@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditores da Energia - Turma 802: O Quiz Interativo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand" onclick="app.goHome()">
+        <span class="brand-icon">⚡</span>
+        <div class="brand-text">
+          <h1>Auditores da Energia</h1>
+          <span>Turma 802 • O Quiz Interativo</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" onclick="app.openPosterModal()" title="Ver cartaz original">
+          <span>📜</span>
+          <span>Ver Cartaz</span>
+        </button>
+        <button class="btn-icon" onclick="app.openCalcModal()" title="Calculadora de consumo e economia">
+          <span>🧮</span>
+          <span>Calculadora</span>
+        </button>
+        <button class="btn-icon" id="soundToggleBtn" onclick="app.toggleSound()" title="Ativar/Desativar sons">
+          <span id="soundIcon">🔊</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- 1. TELA INICIAL (WELCOME / MODOS) -->
+    <section id="welcomeScreen" class="view-section">
+      <div class="card welcome-hero">
+        <span class="badge-pill">💡 Educação e Eficiência Energética</span>
+        <h2 class="hero-title">Auditores da Energia - Turma 802</h2>
+        <p class="hero-desc">
+          Entenda os fatos e mitos sobre o consumo de energia elétrica, domine a anatomia da sua conta de luz, compreenda as bandeiras tarifárias e torne-se um especialista em consumo inteligente!
+        </p>
+
+        <!-- Banner com o Cartaz Anexo -->
+        <div class="poster-preview-card" onclick="app.openPosterModal()">
+          <img src="assets/cartaz_auditor_energia.jpg" alt="Cartaz Auditores da Energia" class="poster-thumbnail">
+          <div class="poster-text">
+            <h3>📖 Material Base: Cartaz da Turma 802</h3>
+            <p>Mitos e Verdades Elétricas (carregadores, lâmpadas fluorescentes, stand-by) e Anatomia da Conta (kWh, tarifas, tributos e bandeiras tarifárias).</p>
+            <span>🔍 Clique aqui para inspecionar o cartaz em alta resolução</span>
+          </div>
+        </div>
+
+        <!-- Barra de Configurações Iniciais -->
+        <div class="settings-strip">
+          <div class="toggle-group">
+            <label class="toggle-switch">
+              <input type="checkbox" id="timerToggle">
+              <span class="toggle-slider"></span>
+              <span>⏱️ Cronômetro (30s / pergunta)</span>
+            </label>
+          </div>
+
+          <div style="flex: 1; max-width: 320px;">
+            <input type="text" id="playerNameInput" class="calc-input" placeholder="Seu Nome (para o Certificado)" maxlength="40">
+          </div>
+        </div>
+
+        <!-- Seleção de Modos de Jogo -->
+        <div style="text-align: left;">
+          <h3 class="section-heading">🎯 Escolha o Modo de Quiz:</h3>
+          <div class="modes-grid">
+
+            <!-- Modo Principal: Maratona 50 Perguntas -->
+            <div class="mode-card featured" onclick="app.startQuiz('maratona50')">
+              <div class="featured-ribbon">Desafio Principal</div>
+              <div class="mode-icon">🏆</div>
+              <h4 class="mode-title">Maratona 50 Perguntas</h4>
+              <p class="mode-desc">O teste oficial completo com 50 questões sorteadas cobrindo todos os temas do projeto para certificar seu título de Auditor.</p>
+              <div class="mode-meta">
+                <span>50 Perguntas</span>
+                <span>Modo Recomendado ➔</span>
+              </div>
+            </div>
+
+            <!-- Desafio Completo: 60 Perguntas -->
+            <div class="mode-card" onclick="app.startQuiz('completo60')">
+              <div class="mode-icon">⚡</div>
+              <h4 class="mode-title">Banco Completo</h4>
+              <p class="mode-desc">Responda todas as 60 questões disponíveis no banco de dados pedagógico da Turma 802.</p>
+              <div class="mode-meta">
+                <span>60 Perguntas</span>
+                <span>Iniciar ➔</span>
+              </div>
+            </div>
+
+            <!-- Simulado Rápido: 15 Perguntas -->
+            <div class="mode-card" onclick="app.startQuiz('rapido15')">
+              <div class="mode-icon">⏱️</div>
+              <h4 class="mode-title">Simulado Rápido</h4>
+              <p class="mode-desc">Partida ágil de 15 perguntas aleatórias para testar seus conhecimentos em poucos minutos.</p>
+              <div class="mode-meta">
+                <span>15 Perguntas</span>
+                <span>Iniciar ➔</span>
+              </div>
+            </div>
+
+            <!-- Modo Específico: Mitos e Verdades -->
+            <div class="mode-card" onclick="app.startQuiz('mitos')">
+              <div class="mode-icon">💡</div>
+              <h4 class="mode-title">Mitos e Verdades</h4>
+              <p class="mode-desc">Focado estritamente na seção de mitos do cartaz: carregador, stand-by, lâmpadas e geladeira.</p>
+              <div class="mode-meta">
+                <span>12 Perguntas</span>
+                <span>Iniciar ➔</span>
+              </div>
+            </div>
+
+            <!-- Modo Específico: Conta & Bandeiras -->
+            <div class="mode-card" onclick="app.startQuiz('conta')">
+              <div class="mode-icon">🧾</div>
+              <h4 class="mode-title">Conta & Bandeiras</h4>
+              <p class="mode-desc">Interpretação da fatura, cálculo do kWh, tributos (ICMS/PIS/COFINS) e bandeiras verde, amarela e vermelha.</p>
+              <div class="mode-meta">
+                <span>23 Perguntas</span>
+                <span>Iniciar ➔</span>
+              </div>
+            </div>
+
+            <!-- Treino por Categoria -->
+            <div class="mode-card" style="background: rgba(30, 41, 59, 0.9);">
+              <div class="mode-icon">🗂️</div>
+              <h4 class="mode-title">Treino por Categoria</h4>
+              <p class="mode-desc">Selecione um tópico específico para estudar individualmente:</p>
+              <select id="categorySelector" class="calc-input" style="margin-bottom: 8px;">
+                <option value="Mitos e Verdades">Mitos e Verdades</option>
+                <option value="Anatomia da Conta">Anatomia da Conta</option>
+                <option value="Bandeiras Tarifárias">Bandeiras Tarifárias</option>
+                <option value="Eletrodomésticos">Eletrodomésticos e Vilões</option>
+                <option value="Iluminação e Eficiência">Iluminação e LED</option>
+                <option value="Selo Procel e Segurança">Selo Procel e Segurança</option>
+              </select>
+              <button class="btn btn-secondary" style="width: 100%; padding: 8px;" onclick="app.startCategoryQuiz()">Treinar Categoria ➔</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. TELA DO QUIZ EM ANDAMENTO -->
+    <section id="quizScreen" class="view-section" style="display: none;">
+      <div class="card">
+        
+        <!-- Barra Superior do Quiz -->
+        <div class="quiz-top-bar">
+          <div class="quiz-badge" id="questionCategoryBadge">
+            <span>🏷️</span>
+            <span id="questionCategoryText">Categoria</span>
+          </div>
+
+          <div class="stats-cluster">
+            <div class="stat-chip">
+              <span>Questão:</span>
+              <strong id="questionCounter">1 / 50</strong>
+            </div>
+
+            <div class="stat-chip" id="timerBadge" style="display: none;">
+              <span>⏱️</span>
+              <span id="timerCountdown" class="timer-ring">30s</span>
+            </div>
+
+            <div class="stat-chip combo" id="comboBadge" style="display: none;">
+              <span id="comboText">🔥 Combo x2</span>
+            </div>
+
+            <div class="stat-chip">
+              <span>Pontos:</span>
+              <strong id="currentScore">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de Progresso Geral -->
+        <div class="progress-container">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Enunciado da Pergunta -->
+        <h3 class="question-title" id="questionText">Enunciado da pergunta carregando...</h3>
+
+        <!-- Lista de Opções -->
+        <div class="options-list" id="optionsContainer">
+          <!-- Botões de opções injetados dinamicamente via JS -->
+        </div>
+
+        <!-- Caixa de Feedback Pedagógico Imediato -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-header" id="feedbackHeader">
+            <span id="feedbackIcon">✅</span>
+            <span id="feedbackTitle">Parabéns, resposta correta!</span>
+          </div>
+          <div class="feedback-body" id="feedbackExplanation">
+            Explicação detalhada...
+          </div>
+        </div>
+
+        <!-- Rodapé do Quiz -->
+        <div class="quiz-footer">
+          <button class="btn btn-secondary" onclick="app.confirmQuit()">Sair do Quiz</button>
+          <button class="btn btn-primary" id="nextQuestionBtn" onclick="app.nextQuestion()" style="display: none;">
+            <span>Próxima Questão</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. TELA DE RESULTADOS FINAIS -->
+    <section id="resultsScreen" class="view-section" style="display: none;">
+      <div class="card results-card">
+        <div class="results-badge" id="resultsRankIcon">🏆</div>
+        <h2 class="results-title" id="resultsRankTitle">Auditor Mestre da Energia</h2>
+        <p class="results-subtitle" id="resultsRankSubtitle">Excelente desempenho nas auditorias elétricas da Turma 802!</p>
+
+        <!-- Painel de Pontuação -->
+        <div class="score-display-box">
+          <div class="score-metric">
+            <div class="value" id="resCorrectCount">48 / 50</div>
+            <div class="label">Acertos</div>
+          </div>
+          <div class="score-metric">
+            <div class="value" id="resAccuracyPercent">96%</div>
+            <div class="label">Aproveitamento</div>
+          </div>
+          <div class="score-metric">
+            <div class="value" id="resTotalPoints">1420</div>
+            <div class="label">Pontos Totais</div>
+          </div>
+        </div>
+
+        <!-- Desempenho por Categoria -->
+        <div class="breakdown-box">
+          <h4 class="breakdown-title">📊 Aproveitamento por Categoria:</h4>
+          <div id="categoryBreakdownContainer">
+            <!-- Barras por categoria preenchidas dinamicamente -->
+          </div>
+        </div>
+
+        <!-- Botões de Ação Final -->
+        <div class="results-actions">
+          <button class="btn btn-success" onclick="app.generateCertificate()">
+            <span>📜</span>
+            <span>Gerar Meu Certificado Oficial</span>
+          </button>
+          <button class="btn btn-primary" onclick="app.openReviewModal()">
+            <span>🔍</span>
+            <span>Revisar Respostas</span>
+          </button>
+          <button class="btn btn-secondary" onclick="app.goHome()">
+            <span>🏠</span>
+            <span>Menu Principal</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: CERTIFICADO OFICIAL DE AUDITOR DA ENERGIA -->
+  <div class="modal-overlay" id="certificateModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="app.closeModal('certificateModal')">✕</button>
+
+      <div class="certificate-frame" id="certificatePrintable">
+        <div class="cert-header">Projeto Escolar de Eficiência Energética • Turma 802</div>
+        <h2 class="cert-main-title">CERTIFICADO DE AUDITOR DA ENERGIA</h2>
+        <div class="cert-sub">Reconhecimento por Mérito e Competência em Gestão Energética</div>
+
+        <div class="cert-body">
+          Certificamos que
+          <div class="cert-student-name" id="certStudentName">Nome do Aluno</div>
+          <br>
+          concluiu com êxito o programa de avaliação interativa <strong>"Auditores da Energia - Turma 802"</strong>, demonstrando domínio aprofundado sobre Mitos e Verdades Elétricas, Anatomia da Fatura de Luz, Sistema de Bandeiras Tarifárias e Práticas Sustentáveis de Eficiência Energética.
+        </div>
+
+        <div class="cert-stamp">
+          <span>⚡ APROVADO COM EXCELÊNCIA • <span id="certScoreInfo">96% DE APROVEITAMENTO</span></span>
+        </div>
+
+        <div class="cert-signatures">
+          <div class="signature-line">
+            <b>Turma 802 - Auditores da Energia</b>
+            <span>Comitê de Eficiência Energética</span>
+          </div>
+          <div class="signature-line">
+            <b id="certDateDisplay">24 de Novembro de 2026</b>
+            <span>Data de Emissão</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 12px;">
+        <button class="btn btn-primary" onclick="window.print()">
+          <span>🖨️</span>
+          <span>Imprimir / Salvar em PDF</span>
+        </button>
+        <button class="btn btn-secondary" onclick="app.closeModal('certificateModal')">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: CARTAZ ORIGINAL EM ALTA RESOLUÇÃO -->
+  <div class="modal-overlay" id="posterModal">
+    <div class="modal-container" style="max-width: 720px; text-align: center;">
+      <button class="modal-close-btn" onclick="app.closeModal('posterModal')">✕</button>
+      <h3 style="margin-bottom: 16px; color: #93c5fd;">Cartaz Oficial - Auditores da Energia (Turma 802)</h3>
+      <img src="assets/cartaz_auditor_energia.jpg" alt="Cartaz Oficial Turma 802" class="poster-full-img">
+      <p style="margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
+        Material de referência pedagógico utilizado para elaboração das 60 questões do aplicativo.
+      </p>
+    </div>
+  </div>
+
+  <!-- MODAL: REVISÃO DE QUESTÕES RESPONDIDAS -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-container" style="max-width: 850px;">
+      <button class="modal-close-btn" onclick="app.closeModal('reviewModal')">✕</button>
+      <h3 style="margin-bottom: 16px; color: #93c5fd;">📋 Revisão Detalhada das Respostas</h3>
+      <div id="reviewQuestionsList" style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Lista preenchida via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CALCULADORA DE ECONOMIA DO AUDITOR -->
+  <div class="modal-overlay" id="calcModal">
+    <div class="modal-container" style="max-width: 750px;">
+      <button class="modal-close-btn" onclick="app.closeModal('calcModal')">✕</button>
+      <h3 style="color: #93c5fd; margin-bottom: 8px;">🧮 Calculadora de Economia do Auditor</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+        Simule quanto pequenos hábitos economizam na sua fatura real de energia elétrica!
+      </p>
+
+      <!-- Simulador Chuveiro -->
+      <div class="card" style="margin-bottom: 16px; background: rgba(15, 23, 42, 0.6);">
+        <h4 style="color: #f59e0b; margin-bottom: 10px;">🚿 Vilão 1: O Chuveiro Elétrico</h4>
+        <div class="calc-grid">
+          <div class="calc-input-group">
+            <label>Potência do chuveiro (Watts):</label>
+            <input type="number" id="calcShowerWatts" class="calc-input" value="5500" step="500">
+          </div>
+          <div class="calc-input-group">
+            <label>Minutos por banho (cada pessoa):</label>
+            <input type="number" id="calcShowerMinutes" class="calc-input" value="15" step="1">
+          </div>
+          <div class="calc-input-group">
+            <label>Pessoas na casa:</label>
+            <input type="number" id="calcShowerPeople" class="calc-input" value="4" step="1">
+          </div>
+          <div class="calc-input-group">
+            <label>Tarifa da luz (R$/kWh com impostos):</label>
+            <input type="number" id="calcTariff" class="calc-input" value="0.95" step="0.05">
+          </div>
+        </div>
+        <div class="calc-result-box" id="calcShowerResult">
+          <div>Gasto mensal só com o chuveiro:</div>
+          <div class="calc-result-value" id="calcShowerValue">R$ 156,75</div>
+          <small style="color: #94a3b8;" id="calcShowerTip">Se reduzirem para 5 minutos por banho, a conta cairá para R$ 52,25 (economia de R$ 104,50/mês)!</small>
+        </div>
+      </div>
+
+      <!-- Simulador Troca de Lâmpadas -->
+      <div class="card" style="background: rgba(15, 23, 42, 0.6);">
+        <h4 style="color: #10b981; margin-bottom: 10px;">💡 Eficiência: Troca de Lâmpadas para LED</h4>
+        <div class="calc-grid">
+          <div class="calc-input-group">
+            <label>Quantidade de lâmpadas trocadas:</label>
+            <input type="number" id="calcLampQty" class="calc-input" value="6" step="1">
+          </div>
+          <div class="calc-input-group">
+            <label>Horas acesas por dia (média):</label>
+            <input type="number" id="calcLampHours" class="calc-input" value="5" step="1">
+          </div>
+        </div>
+        <div class="calc-result-box" style="border-color: #10b981;">
+          <div>Economia anual substituindo lâmpadas de 60W por LED de 9W:</div>
+          <div class="calc-result-value" id="calcLampEconomy">R$ 530,90 / ano</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    Desenvolvido para o projeto <strong>"Auditores da Energia - Turma 802"</strong> • Fatos, mitos e eficiência energética escolar.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
