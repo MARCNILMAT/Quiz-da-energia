@@ -161,11 +161,16 @@
     <section id="quizScreen" class="view-section" style="display: none;">
       <div class="card">
         
-        <!-- Barra Superior do Quiz -->
         <div class="quiz-top-bar">
-          <div class="quiz-badge" id="questionCategoryBadge">
-            <span>🏷️</span>
-            <span id="questionCategoryText">Categoria</span>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <div class="quiz-badge" id="questionCategoryBadge">
+              <span>🏷️</span>
+              <span id="questionCategoryText">Categoria</span>
+            </div>
+            <div class="quiz-badge diff-badge" id="questionLevelBadge">
+              <span id="questionLevelIcon">🟢</span>
+              <span id="questionLevelText">Fácil</span>
+            </div>
           </div>
 
           <div class="stats-cluster">
@@ -246,6 +251,14 @@
           <div class="score-metric">
             <div class="value" id="resTotalPoints">1420</div>
             <div class="label">Pontos Totais</div>
+          </div>
+        </div>
+
+        <!-- Desempenho por Nível de Dificuldade -->
+        <div class="breakdown-box">
+          <h4 class="breakdown-title">🎯 Desempenho por Nível de Dificuldade:</h4>
+          <div id="levelBreakdownContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px;">
+            <!-- Barras por nível preenchidas dinamicamente -->
           </div>
         </div>
 

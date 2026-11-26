@@ -192,6 +192,25 @@ class EnergyQuizApp {
     document.getElementById('questionCounter').textContent = `${this.currentIndex + 1} / ${this.activeQuestions.length}`;
     document.getElementById('currentScore').textContent = this.score;
 
+    // Atualizar Badge de Nível de Dificuldade
+    const levelBadge = document.getElementById('questionLevelBadge');
+    const levelText = document.getElementById('questionLevelText');
+    const levelIcon = document.getElementById('questionLevelIcon');
+    if (levelBadge && levelText) {
+      levelText.textContent = q.level;
+      levelBadge.className = 'quiz-badge diff-badge';
+      if (q.level === 'Fácil') {
+        levelBadge.classList.add('facil');
+        if (levelIcon) levelIcon.textContent = '🟢';
+      } else if (q.level === 'Médio') {
+        levelBadge.classList.add('medio');
+        if (levelIcon) levelIcon.textContent = '🟡';
+      } else {
+        levelBadge.classList.add('dificil');
+        if (levelIcon) levelIcon.textContent = '🔴';
+      }
+    }
+
     // Barra de Progresso
     const progressPercent = ((this.currentIndex) / this.activeQuestions.length) * 100;
     document.getElementById('progressFill').style.width = `${progressPercent}%`;
@@ -306,12 +325,13 @@ class EnergyQuizApp {
       }
     });
 
-    // Atualizar pontuação e combo
+    // Atualizar pontuação e combo conforme o nível
     if (isCorrect) {
       this.combo++;
+      const basePoints = (q.level === 'Difícil') ? 200 : (q.level === 'Médio') ? 150 : 100;
       const comboBonus = (this.combo > 1) ? (this.combo * 15) : 0;
       const timeBonus = this.timerEnabled ? Math.max(0, this.timeLeft * 2) : 0;
-      const pointsEarned = 100 + comboBonus + timeBonus;
+      const pointsEarned = basePoints + comboBonus + timeBonus;
       this.score += pointsEarned;
       this.playSound('correct');
     } else {
@@ -412,8 +432,52 @@ class EnergyQuizApp {
     document.getElementById('resultsRankTitle').textContent = rankTitle;
     document.getElementById('resultsRankSubtitle').textContent = rankSubtitle;
 
-    // Renderizar Detalhamento por Categoria
+    // Renderizar Detalhamentos
+    this.renderLevelBreakdown();
     this.renderCategoryBreakdown();
+  }
+
+  renderLevelBreakdown() {
+    const container = document.getElementById('levelBreakdownContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const levelsOrder = ['Fácil', 'Médio', 'Difícil'];
+    const levelIcons = { 'Fácil': '🟢', 'Médio': '🟡', 'Difícil': '🔴' };
+    const levelColors = { 'Fácil': '#10b981', 'Médio': '#f59e0b', 'Difícil': '#ef4444' };
+
+    const levelsMap = {
+      'Fácil': { total: 0, correct: 0 },
+      'Médio': { total: 0, correct: 0 },
+      'Difícil': { total: 0, correct: 0 }
+    };
+
+    this.answersHistory.forEach(item => {
+      const lvl = item.question.level || 'Médio';
+      if (levelsMap[lvl]) {
+        levelsMap[lvl].total++;
+        if (item.isCorrect) levelsMap[lvl].correct++;
+      }
+    });
+
+    levelsOrder.forEach(lvl => {
+      const data = levelsMap[lvl];
+      if (data.total === 0) return;
+      const pct = Math.round((data.correct / data.total) * 100);
+
+      const card = document.createElement('div');
+      card.className = 'level-card';
+      card.innerHTML = `
+        <div class="level-card-header">
+          <span>${levelIcons[lvl]} ${lvl}</span>
+          <span style="color: ${levelColors[lvl]};">${data.correct}/${data.total} (${pct}%)</span>
+        </div>
+        <div class="breakdown-bar">
+          <div class="breakdown-progress" style="width: ${pct}%; background: ${levelColors[lvl]};"></div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
   }
 
   renderCategoryBreakdown() {
@@ -507,9 +571,11 @@ class EnergyQuizApp {
         optionsHtml += `<div style="${style}"><strong>${letters[optIdx]})</strong> ${opt}</div>`;
       });
 
+      const levelLabel = (q.level === 'Fácil') ? '🟢 Fácil' : (q.level === 'Médio') ? '🟡 Médio' : '🔴 Difícil';
+
       card.innerHTML = `
         <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-          <strong style="color: #60a5fa;">Questão ${idx + 1} • ${q.category}</strong>
+          <strong style="color: #60a5fa;">Questão ${idx + 1} • ${q.category} <span style="font-size: 0.8rem; opacity: 0.9; margin-left: 6px;">[${levelLabel}]</span></strong>
           <span style="font-weight: bold; color: ${item.isCorrect ? '#34d399' : '#f87171'};">
             ${item.isCorrect ? '✅ Acertou' : item.isTimeout ? '⏱️ Esgotou' : '❌ Errou'}
           </span>

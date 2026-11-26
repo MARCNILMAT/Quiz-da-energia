@@ -8,6 +8,13 @@ Aplicativo web completo, interativo e gamificado de perguntas e respostas (Quiz)
 
 O aplicativo transforma os conceitos do cartaz em uma experiência pedagógica moderna, dinâmica e envolvente, contendo **60 questões exclusivas** (superando a meta de pelo menos 50 questões), cobrindo todos os aspectos essenciais de conscientização e eficiência energética.
 
+### 🌟 Destaques Pedagógicos Recentes:
+- 🟢 **Níveis de Dificuldade Balanceados**: As 60 questões estão rigorosamente distribuídas em **20 Fáceis**, **20 Médias** e **20 Difíceis**.
+- 🔄 **Alternância Rítmica Garantida**: Durante o jogo, as perguntas alternam ciclicamente de nível (`Fácil ➔ Médio ➔ Difícil ➔ Fácil...`), evitando agrupamentos monótonos.
+- ⚖️ **Design Anti-Viés de Resposta**: Em 100% das questões, a alternativa correta **nunca é a opção com o texto mais longo**, eliminando vícios de resposta e estimulando o raciocínio real do aluno.
+- 🎯 **Pontuação Proporcional ao Desafio**: Questões fáceis concedem 100 pts, médias 150 pts e difíceis 200 pts (com bônus de combo e tempo).
+- 📊 **Análise de Desempenho por Dificuldade**: Na tela final, o estudante confere seu percentual de acerto individualizado para cada nível de dificuldade.
+
 ### 📚 Temas e Categorias Abordadas:
 1. **Mitos e Verdades Elétricas (12 questões)**:
    - Carregador de celular plugado sem o aparelho (mito do consumo exagerado vs fato científico).

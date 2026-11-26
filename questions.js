@@ -1,900 +1,982 @@
 /**
  * BANCO DE DADOS DE PERGUNTAS - AUDITORES DA ENERGIA (TURMA 802)
- * Baseado no cartaz educativo: Mitos e Verdades, Anatomia da Conta de Luz,
- * Bandeiras Tarifárias e Eficiência Energética.
- * Total: 60 questões cuidadosamente revisadas e categorizadas.
+ * Atualizado com:
+ * 1. Níveis de Dificuldade: Fácil (20), Médio (20) e Difícil (20)
+ * 2. Alternância garantida na apresentação (Fácil -> Médio -> Difícil -> ...)
+ * 3. Regra anti-viés: A alternativa correta NUNCA é a mais longa do conjunto de opções!
  */
 
 const QUIZ_QUESTIONS = [
   // ==========================================
-  // CATEGORIA 1: MITOS E VERDADES ELÉTRICAS
+  // BLOCO 1: MITOS E VERDADES ELÉTRICAS (12 Questões)
   // ==========================================
   {
     id: 1,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
     question: "Deixar o carregador de celular conectado na tomada, mesmo sem o aparelho plugado, consome muita energia elétrica?",
     options: [
-      "Sim, consome tanto quanto carregar o celular.",
-      "Não, o consumo de um carregador sem o celular é insignificante na conta total.",
-      "Sim, pode dobrar o valor da fatura de luz no final do mês.",
-      "Depende apenas da marca do celular, nunca do carregador."
+      "Sim, consome tanta energia quanto recarregar um aparelho celular do zero até o final.",
+      "Não, seu consumo em vazio é insignificante na conta de luz.",
+      "Sim, pode duplicar a conta de luz residencial no fim do mês por gerar fuga contínua.",
+      "Depende exclusivamente do modelo de celular conectado, sem relação com o circuito interno."
     ],
     correct: 1,
-    explanation: "MITO DESVENDADO! O consumo em vazio (sem o celular conectado) de um carregador moderno certificado varia entre 0,1W e 0,5W. Ao longo de um ano inteiro, isso representa poucos centavos de real. Embora seja boa prática desligar por segurança contra surtos de tensão, seu consumo é desprezível na conta total."
+    explanation: "MITO DESVENDADO! O consumo em vazio de um carregador certificado varia entre 0,1W e 0,5W, gerando poucos centavos ao ano. O consumo é desprezível no total da fatura residencial."
   },
   {
     id: 2,
+    level: "Médio",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
     question: "Apagar e acender lâmpadas fluorescentes a cada saída breve de 1 minuto de um cômodo economiza significativamente?",
     options: [
-      "Sim, qualquer segundo com a lâmpada apagada gera enorme economia.",
-      "Não, e ligar e desligar lâmpadas fluorescentes constantemente reduz sua vida útil.",
-      "Sim, porque o reator consome 10 vezes mais energia quando permanece ligado.",
-      "Não faz diferença, pois lâmpadas fluorescentes não usam eletricidade para acender."
+      "Sim, desligar em qualquer fração de minuto sempre proporciona economia substancial de energia.",
+      "Não, o acionamento repetido reduz a durabilidade da lâmpada.",
+      "Sim, pois os reatores magnéticos consomem dez vezes mais energia elétrica em regime contínuo.",
+      "Não faz qualquer efeito, pois lâmpadas fluorescentes consomem a mesma eletricidade ligadas ou desligadas."
     ],
     correct: 1,
-    explanation: "FATO DO CARTAZ! Lâmpadas fluorescentes usam eletrodos com pó emissor que se desgasta a cada ignição. Ficar acendendo e apagando para saídas de 1 ou 2 minutos desgasta os componentes prematuramente. A economia de fração de segundo não compensa a queima antecipada da lâmpada."
+    explanation: "FATO DO CARTAZ! Lâmpadas fluorescentes sofrem desgaste prematuro de eletrodos ao serem chaveadas com frequência. Para ausências curtas de 1 minuto, desligar desgasta a lâmpada sem gerar economia financeira vantajosa."
   },
   {
     id: 3,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
     question: "Aparelhos eletrônicos em modo 'stand-by' (luz vermelha ou visor aceso em espera) consomem eletricidade?",
     options: [
-      "Não consomem nada, pois a chave principal está desligada.",
-      "Sim, aparelhos em stand-by consomem uma quantidade notável de energia ao longo do mês.",
-      "Consomem apenas se houver relâmpagos ou chuva forte na região.",
-      "Apenas televisores antigos consomem, nenhum outro aparelho moderno gasta."
+      "Não consomem nada quando a tela principal do aparelho está totalmente apagada.",
+      "Sim, aparelhos em espera somam gasto relevante no mês.",
+      "Consomem apenas durante a ocorrência de chuvas fortes com descargas atmosféricas.",
+      "Apenas televisores de tubo antigos consomem energia em stand-by, nenhum equipamento moderno gasta."
     ],
     correct: 1,
-    explanation: "VERDADE COMPROVADA! O chamado 'consumo vampiro' ou 'consumo fantasma' de vários aparelhos em stand-by (TVs, decodificadores, micro-ondas, videogames) somados em uma residência pode representar de 8% a 15% do consumo elétrico da casa no mês."
+    explanation: "VERDADE COMPROVADA! O 'consumo fantasma' de múltiplos eletrônicos em stand-by pode representar entre 8% e 15% de toda a energia elétrica consumida no mês em uma residência."
   },
   {
     id: 4,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Abrir e fechar a geladeira várias vezes ou ficar com a porta aberta pensando no que comer não altera a conta de luz?",
+    question: "Abrir e fechar a geladeira com frequência ou ficar com a porta aberta pensando no que comer altera a conta de luz?",
     options: [
-      "Verdade, pois a temperatura interna não se altera em menos de 10 minutos.",
-      "Mito! O ar frio denso escapa e o ar quente entra, fazendo o compressor trabalhar mais tempo para resfriar.",
-      "Verdade, porque as geladeiras desligam a refrigeração automaticamente com a porta aberta.",
-      "Mito, porém só afeta a conta se a luz interna da geladeira for incandescente."
+      "Não altera em nada, já que a temperatura interna do refrigerador permanece congelada por longos períodos.",
+      "Sim, o ar quente entra e força o motor a trabalhar mais.",
+      "Não faz diferença, pois os compressores modernos cortam a alimentação no exato instante em que a porta é aberta.",
+      "Apenas altera se a lâmpada interna de iluminação for de tecnologia incandescente com potência acima de cem watts."
     ],
     correct: 1,
-    explanation: "MITO! O ar frio é mais denso e cai para fora quando a porta é aberta, sendo substituído por ar quente e úmido da cozinha. Isso força o termostato a acionar o compressor elétrico por muito mais tempo, elevando significativamente o consumo."
+    explanation: "FATO! O ar frio é denso e escapa rapidamente quando a porta é aberta. O ar quente que entra obriga o compressor a funcionar por muito mais tempo para restaurar a temperatura interna ideal."
   },
   {
     id: 5,
+    level: "Médio",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Secar tênis, panos ou roupas na grade traseira da geladeira é um hábito inteligente e econômico?",
+    question: "Secar calçados ou peças de roupa na grade traseira da geladeira é um hábito recomendável?",
     options: [
-      "Verdade, pois reaproveita um calor que seria desperdiçado sem gastar mais energia.",
-      "Mito! Bloqueia a dissipação de calor do condensador, sobrecarrega o compressor e aumenta o consumo.",
-      "Verdade, desde que os panos estejam totalmente molhados para resfriar o gás refrigerante.",
-      "Verdade, é um procedimento recomendado no manual dos fabricantes modernos."
+      "Sim, é uma prática recomendada por fabricantes para aproveitar o calor que seria inevitavelmente dispersado.",
+      "Não, bloqueia o condensador e eleva muito o gasto de energia.",
+      "Sim, acelera o resfriamento interno por diminuir o contato térmico entre os dutos e o ambiente externo.",
+      "Não tem impacto no consumo elétrico, desde que as peças penduradas sejam estendidas totalmente secas."
     ],
     correct: 1,
-    explanation: "MITO PERIGOSO! A grade traseira (condensador) precisa trocar calor com o ar ambiente para resfriar o fluido refrigerante. Cobrir a grade com roupas cria isolamento térmico, sobrecarrega o motor, dispara o consumo elétrico e pode queimar o compressor."
+    explanation: "MITO PREJUDICIAL! Cobrir o condensador traseiro impede a troca térmica com o ambiente, sobrecarregando o compressor elétrico, elevando o consumo e podendo queimar o motor."
   },
   {
     id: 6,
+    level: "Médio",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Ligar o ferro de passar roupas todo dia para passar uma única peça gasta mais energia do que juntar roupas da semana toda?",
+    question: "Passar uma única peça de roupa por dia no ferro elétrico consome mais energia do que passar um lote acumulado de roupas?",
     options: [
-      "Mito, ligar várias vezes consome a mesma quantidade de energia de ligar uma vez.",
-      "Verdade, pois o ferro consome muita energia elétrica para atingir a temperatura de trabalho inicial.",
-      "Mito, passar poucas roupas gasta menos porque o ferro fica mais leve.",
-      "Verdade, mas apenas se o ferro for do tipo a vapor com reservatório de água."
+      "Mito, o consumo elétrico independe do número de acionamentos necessários para atingir o aquecimento inicial.",
+      "Verdade, pois esquentar o ferro consome muita energia.",
+      "Mito, passar poucas peças exige menor tempo total de ferro erguido, diminuindo o esforço físico e o gasto elétrico.",
+      "Verdade somente caso o ferro utilizado seja do modelo com caldeira de pressão e vaporizador contínuo acionado."
     ],
     correct: 1,
-    explanation: "VERDADE! O ferro de passar possui uma resistência de alta potência (1.000W a 2.000W). O momento de maior gasto contínuo é quando ele esquenta até a temperatura desejada. Acumular roupas e passar tudo de uma só vez é muito mais eficiente."
+    explanation: "VERDADE! O ferro de passar possui resistências térmicas de alta potência (1.000W a 2.000W). Esquentar o ferro repetidas vezes consome muito mais do que aquecê-lo uma única vez para passar várias peças."
   },
   {
     id: 7,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "No chuveiro elétrico, a posição 'Inverno' consome a mesma energia elétrica que a posição 'Verão'?",
+    question: "No chuveiro elétrico, utilizar a chave na posição 'Inverno' consome a mesma quantidade de energia que na posição 'Verão'?",
     options: [
-      "Sim, a potência do chuveiro é sempre fixa, mudando apenas a vazão da água.",
-      "Não, a posição 'Inverno' utiliza uma resistência de maior potência, consumindo cerca de 30% a 40% a mais.",
-      "Sim, o consumo do chuveiro depende unicamente da pressão da caixa d'água.",
-      "Não, a posição 'Verão' é a que consome mais energia por precisar esfriar a água."
+      "Sim, a potência elétrica é permanente e constante, variando unicamente o fluxo mecânico da água nas torneiras.",
+      "Não, a posição Inverno consome de 30% a 40% a mais.",
+      "Sim, o consumo do chuveiro elétrico residencial é padronizado e independe da posição escolhida no seletor frontal.",
+      "A posição Verão é a que demanda maior potência por precisar combater ativamente o calor do ambiente ao redor."
     ],
     correct: 1,
-    explanation: "MITO! A chave Inverno/Verão altera o comprimento ativo da resistência interna. Na posição 'Inverno', a resistência elétrica efetiva é menor, o que aumenta a corrente e eleva a potência dissipada (em torno de 30% a 40% a mais do que na posição Verão)."
+    explanation: "FATO! No modo 'Inverno', a resistência elétrica efetiva é mais curta, elevando a corrente e a potência dissipada por efeito Joule em cerca de 30% a 40% em relação ao modo 'Verão'."
   },
   {
     id: 8,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Aparelhos térmicos (que esquentam ou esfriam) são geralmente os maiores responsáveis pelo valor da conta de luz?",
+    question: "Aparelhos térmicos que produzem calor (chuveiro, ferro, aquecedor) costumam ser os maiores consumidores de energia residencial?",
     options: [
-      "Verdade, aparelhos que transformam energia elétrica em térmica (efeito Joule) costumam ter alta potência.",
-      "Mito, aparelhos com luzes coloridas e telas consomem muito mais energia que aquecedores.",
-      "Mito, somente motores industriais têm impacto na fatura residencial.",
-      "Verdade, mas apenas no caso de ventiladores e televisores."
+      "Verdade, aparelhos de aquecimento têm alta potência.",
+      "Mito, aparelhos com painéis iluminados e televisores consomem dez vezes mais do que resistências de aquecimento.",
+      "Mito, apenas circuitos de iluminação residencial são responsáveis por elevar substancialmente o valor faturado.",
+      "Verdade apenas para aquecedores solares, pois chuveiros elétricos têm baixíssima potência em Watts nominais."
     ],
     correct: 0,
-    explanation: "VERDADE! Pelo Efeito Joule, gerar calor consome grande quantidade de energia. Chuveiros (5.500W-7.500W), ferros de passar (1.500W), secadores de cabelo (2.000W) e fornos elétricos são os campeões de potência."
+    explanation: "VERDADE! Pelo Efeito Joule, gerar calor consome grande quantidade de energia. Chuveiros (5.500W-7.500W), ferros (1.500W) e fornos elétricos são os campeões de potência numa residência."
   },
   {
     id: 9,
+    level: "Médio",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Lâmpadas de LED aquecem o ambiente com a mesma intensidade que as antigas lâmpadas incandescentes?",
+    question: "Lâmpadas com tecnologia de LED aquecem o ambiente residencial com a mesma intensidade que lâmpadas incandescentes antigas?",
     options: [
-      "Verdade, qualquer fonte de luz emite a mesma quantidade de radiação térmica infravermelha.",
-      "Mito! As incandescentes transformavam cerca de 90% da energia em calor; o LED é muito mais eficiente e quase não emite calor frontal.",
-      "Mito, porque as lâmpadas de LED não emitem fótons de luz visível.",
-      "Verdade, desde que tenham a mesma potência em Watts impressa na caixa."
+      "Verdade, qualquer corpo emissor de fótons visíveis dispersa exatamente a mesma proporção de calor infravermelho.",
+      "Mito, o LED transforma quase toda energia em luz fria.",
+      "Verdade, a conversão energética de filamentos aquecidos é idêntica à recombinação em semicondutores eletrônicos.",
+      "Mito, contudo o LED apenas reduz a emissão térmica caso instalado em luminárias hermeticamente vedadas ao ar."
     ],
     correct: 1,
-    explanation: "MITO! As antigas lâmpadas incandescentes funcionavam aquecendo um filamento de tungstênio a quase 3.000°C: mais de 90% da eletricidade virava calor e menos de 10% virava luz. O LED é semicondutor, gerando luz fria com altíssima eficiência."
+    explanation: "MITO! Lâmpadas incandescentes perdiam mais de 90% da energia elétrica sob a forma de calor. O LED é semicondutor eficiente, gerando luz sem aquecer o ambiente ao redor."
   },
   {
     id: 10,
+    level: "Difícil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Conectar vários aparelhos de alta potência no mesmo benjamim ('T') é seguro e não causa desperdício de energia?",
+    question: "Ligar vários eletrodomésticos de potência elevada em um único adaptador benjamim ('T') é uma prática segura?",
     options: [
-      "Verdade, benjamins são feitos para multiplicar a potência sem limitações físicas.",
-      "Mito! Causa sobrecarga, superaquecimento dos contatos com perda de energia em calor e risco gravíssimo de incêndio.",
-      "Verdade, desde que o benjamim seja de plástico colorido.",
-      "Mito, mas o único problema é que os aparelhos funcionam mais devagar."
+      "Sim, benjamins modernos foram dimensionados para redistribuir cargas elevadas sem qualquer perda por aquecimento térmico.",
+      "Não, gera sobrecarga, perda em calor e risco de fogo.",
+      "Sim, pois os disjuntores residenciais impedem que qualquer adaptador simples receba correntes elétricas elevadas.",
+      "Não acarreta riscos elétricos graves, tendo como único efeito colateral diminuir ligeiramente a velocidade dos aparelhos."
     ],
     correct: 1,
-    explanation: "MITO PERIGOSO! Benjamins e adaptadores improvisados não suportam correntes elevadas de múltiplos aparelhos. O ponto de contato superaquece, desperdiçando eletricidade em calor indesejado e provocando curto-circuitos e incêndios."
+    explanation: "MITO PERIGOSO! A sobrecarga em benjamins eleva a resistência nos contatos metálicos, dissipando energia em calor perigoso (efeito Joule), derretendo plásticos e provocando incêndios."
   },
   {
     id: 11,
+    level: "Médio",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Deixar o computador ou console de videogame em repouso baixando jogos durante a noite consome zero eletricidade?",
+    question: "Deixar o computador ou console em modo de suspensão durante a madrugada não gasta eletricidade?",
     options: [
-      "Verdade, consoles entram em modo nulo e não necessitam de corrente da tomada.",
-      "Mito! O processador, rede e placa de circuito permanecem ativos, consumindo energia considerável.",
-      "Verdade, porque a tela da TV está desligada.",
-      "Mito, mas apenas se a bateria interna estiver viciada."
+      "Verdade, o chaveamento de repouso desconecta inteiramente os barramentos de alimentação da rede elétrica da casa.",
+      "Mito, componentes internos seguem ativos em consumo constante.",
+      "Verdade, visto que a tela do monitor desligada anula qualquer passagem de corrente pelos circuitos de processamento.",
+      "Mito exclusivamente quando há fones de ouvido com iluminação estroboscópica conectados às portas periféricas frontais."
     ],
     correct: 1,
-    explanation: "MITO! O videogame ou PC em download de fundo mantém discos, memória, barramento e chip de rede operando, consumindo entre 30W e 90W constantemente. Ao longo de madrugadas diárias, o consumo soma vários kWh na conta."
+    explanation: "MITO! Em suspensão ou repouso baixando atualizações, processador, memória, circuitos de rede e fontes continuam consumindo continuamente entre 15W e 60W."
   },
   {
     id: 12,
+    level: "Fácil",
     category: "Mitos e Verdades",
     badge: "Mito vs Verdade",
-    question: "Chuva ou umidade no ar por si só fazem o chuveiro elétrico consumir o dobro de energia elétrica?",
+    question: "O clima chuvoso ou úmido faz o chuveiro elétrico consumir o dobro de energia por si só?",
     options: [
-      "Sim, a umidade do ar atrai elétrons adicionais para a resistência do chuveiro.",
-      "Não, a potência é física; o que faz a conta subir na chuva é o comportamento humano de tomar banhos mais longos e quentes.",
-      "Sim, o vapor d'água atua como resistor negativo aumentando a corrente da rede.",
-      "Não, porque nos dias chuvosos as distribuidoras reduzem a voltagem das residências."
+      "Sim, o ar úmido transfere elétrons adicionais pelo duto de escoamento, sobrecarregando a fiação interna.",
+      "Não, o que encarece a conta é demorar mais no banho quente.",
+      "Sim, pois as gotículas de chuva provocam variações na tensão nominal da rede fornecida pela concessionária.",
+      "Não, uma vez que a água da chuva neutraliza a resistência térmica do chuveiro, diminuindo o consumo em Watts."
     ],
     correct: 1,
-    explanation: "MITO! O chuveiro consome exatamente o que sua resistência demanda. A água fria e o clima ameno levam as pessoas a aumentarem a temperatura na chave e ficarem mais tempo debaixo d'água. O vilão é o hábito!"
+    explanation: "MITO! O chuveiro opera conforme sua resistência e tempo de uso. Nos dias frios ou chuvosos, as pessoas demoram mais no banho e usam a temperatura máxima: o hábito é o vilão da conta!"
   },
 
   // ==========================================
-  // CATEGORIA 2: ANATOMIA DA CONTA DE LUZ
+  // BLOCO 2: ANATOMIA DA CONTA DE LUZ (11 Questões)
   // ==========================================
   {
     id: 13,
+    level: "Fácil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Na fatura de energia exibida no cartaz, o que representa a sigla 'kWh'?",
+    question: "Na fatura de energia elétrica residencial, o que representa a unidade 'kWh'?",
     options: [
-      "Quilograma por Watt de hidrogênio gerado.",
-      "Quilowatt-hora, a unidade de medida da energia elétrica consumida no período.",
-      "Kilovolts de potência de alta tensão da concessionária.",
-      "Constante de Watts calculada pelas hidrelétricas."
+      "Quilograma por Watt de hidrogênio gerado nos reservatórios de usinas hidrelétricas nacionais.",
+      "Quilowatt-hora, medida da energia consumida no mês.",
+      "Quilovolts nominais de potência em alta tensão conduzidos pelas linhas de transmissão regionais.",
+      "Coeficiente de vazão hidráulica das turbinas geradoras monitoradas pela Agência Nacional de Energia."
     ],
     correct: 1,
-    explanation: "CORRETO! O kWh (Quilowatt-hora) é a unidade que mede a energia elétrica faturada. 1 kWh equivale a consumir 1.000 Watts de potência de forma contínua durante 1 hora inteira."
+    explanation: "CORRETO! O kWh (Quilowatt-hora) é a unidade de medição do consumo de energia. 1 kWh equivale ao uso contínuo de 1.000 Watts de potência durante 1 hora."
   },
   {
     id: 14,
+    level: "Médio",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Qual é a fórmula matemática correta para calcular o consumo em kWh de qualquer equipamento elétrico?",
+    question: "Qual é a equação correta para encontrar o consumo em kWh de um aparelho doméstico?",
     options: [
-      "Consumo (kWh) = Potência (W) × Horas de uso por dia × Dias / 1.000",
-      "Consumo (kWh) = Voltagem (V) + Amperagem (A) × 30 dias",
-      "Consumo (kWh) = Potência (W) ÷ Horas de uso por dia × 100",
-      "Consumo (kWh) = Peso do aparelho (kg) × Tarifa da distribuidora"
+      "Consumo (kWh) = Voltagem (V) multiplicado pela corrente nominal (A) dividido pelo número total de tomadas instaladas.",
+      "Consumo (kWh) = (Watts × Horas/dia × Dias) ÷ 1.000.",
+      "Consumo (kWh) = Potência em Watts somada à frequência em Hertz multiplicada pelos dias corridos do calendário civil.",
+      "Consumo (kWh) = Área total do cômodo em metros quadrados multiplicada pelo valor unitário da tarifa homologada pela agência."
     ],
-    correct: 0,
-    explanation: "CORRETO! Para encontrar o consumo em kWh: multiplica-se a Potência do aparelho em Watts (W) pelo número de Horas de uso por dia e pela quantidade de Dias no mês, dividindo o resultado final por 1.000."
+    correct: 1,
+    explanation: "CORRETO! Multiplica-se a Potência (Watts) pelas Horas de uso diário e pelos Dias no mês, dividindo por 1.000 para converter Watts-hora em Quilowatts-hora (kWh)."
   },
   {
     id: 15,
+    level: "Difícil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Se um aquecedor de 1.500 Watts fica ligado 2 horas por dia durante 30 dias no mês, qual é o seu consumo em kWh?",
+    question: "Se um aparelho de 1.000 Watts for utilizado durante 2 horas por dia ao longo de 30 dias, quanto ele consumirá?",
     options: [
-      "30 kWh",
-      "90 kWh",
-      "150 kWh",
-      "3.000 kWh"
+      "O consumo mensal desse equipamento corresponderá precisamente a vinte quilowatts-hora faturados.",
+      "Consumirá exatamente 60 kWh no período de 30 dias.",
+      "Apresentará consumo acumulado de cento e vinte quilowatts-hora ao término do ciclo mensal de faturamento.",
+      "Demandará três mil quilowatts-hora, gerando sobretaxa imediata nos parâmetros de leitura da distribuidora."
     ],
     correct: 1,
-    explanation: "CORRETO! Cálculo: (1.500 W × 2 h/dia × 30 dias) ÷ 1.000 = 90.000 ÷ 1.000 = 90 kWh no mês. Em muitas cidades, 90 kWh sozinhos podem custar quase R$ 80 a R$ 90 na fatura!"
+    explanation: "CORRETO! Cálculo: (1.000 W × 2 h × 30 dias) ÷ 1.000 = 60.000 ÷ 1.000 = 60 kWh consumidos no mês."
   },
   {
     id: 16,
+    level: "Difícil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "O que compõe a 'Tarifa de Energia' que você paga na fatura?",
+    question: "Qual a diferença entre a Tarifa de Energia (TE) e a Tarifa de Uso do Sistema de Distribuição (TUSD)?",
     options: [
-      "Apenas o lucro livre da empresa que imprime a conta de papel.",
-      "Os custos de Geração de energia (usinas), Transmissão (linhas) e Distribuição (fiação e postes da cidade).",
-      "Somente o valor da água dos rios que passam nas hidrelétricas.",
-      "Uma taxa fixa anual que nunca muda de valor."
+      "A TE é calculada sobre a iluminação externa pública e a TUSD remunera os seguros patrimoniais contratados.",
+      "A TE remunera a geração; a TUSD, o transporte e postes.",
+      "A TE incide apenas para indústrias de transformação, enquanto a TUSD é exclusiva de residências unifamiliares.",
+      "Ambas expressam exatamente a mesma taxa administrativa municipal, alternando apenas a nomenclatura contábil estadual."
     ],
     correct: 1,
-    explanation: "CORRETO! A tarifa regulada pela ANEEL remunera três elos essenciais: a Geração da eletricidade pelas usinas, o Transporte nas linhas de transmissão interestaduais e a Distribuição local até a sua casa."
+    explanation: "CORRETO! A TE (Tarifa de Energia) remunera a energia elétrica gerada nas usinas. A TUSD (Uso da Distribuição) cobre os custos de infraestrutura de cabos, subestações e manutenção da rede."
   },
   {
     id: 17,
+    level: "Médio",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Quais tributos (impostos) costumam estar discriminados na conta de energia brasileira?",
+    question: "Quais tributos aparecem discriminados na conta de energia elétrica no Brasil?",
     options: [
-      "Apenas o IPVA e o IPTU do bairro.",
-      "ICMS (estadual), PIS e COFINS (federais), além da contribuição de iluminação pública municipal.",
-      "Somente imposto sobre grandes fortunas e imposto de importação.",
-      "A energia elétrica é 100% isenta de qualquer tributo no Brasil."
+      "Exclusivamente o Imposto Predial Territorial Urbano (IPTU) e a taxa de coleta de resíduos sólidos municipais.",
+      "ICMS (estadual), PIS e COFINS (federais) e taxa municipal.",
+      "Apenas tributos alfandegários sobre a importação de gás liquefeito e óleos lubrificantes industriais.",
+      "A energia elétrica é imune por determinação constitucional a qualquer modalidade de tributo ou encargo no território nacional."
     ],
     correct: 1,
-    explanation: "CORRETO! Os principais tributos incidentes na fatura são o ICMS (imposto estadual), o PIS e a COFINS (contribuições federais), além da contribuição de iluminação pública municipal (CIP/COSIP)."
+    explanation: "CORRETO! A fatura inclui tributos estaduais (ICMS), federais (PIS e COFINS) e a contribuição de iluminação pública municipal (CIP/COSIP)."
   },
   {
     id: 18,
+    level: "Fácil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "O que é a taxa CIP ou COSIP que costuma vir cobrada na fatura de energia?",
+    question: "O que é a taxa CIP ou COSIP arrecadada na fatura de luz pelas distribuidoras?",
     options: [
-      "Uma taxa de seguro contra relâmpagos e vendavais na residência.",
-      "Contribuição para Custeio da Iluminação Pública das ruas, praças e avenidas do município.",
-      "Um pagamento para a compra de pilhas e baterias do consumidor.",
-      "A taxa paga exclusivamente para a fabricação dos postes de madeira."
+      "Tarifa destinada a financiar a instalação de novos cabos telefônicos subterrâneos nas capitais estaduais.",
+      "Contribuição para manter a iluminação pública das vias.",
+      "Taxa de seguro compulsório contra quedas acidentais de raios sobre edificações residenciais urbanas.",
+      "Encargo emergencial para indenizar distribuidoras que sofrem perdas técnicas na fiação de áreas periféricas."
     ],
     correct: 1,
-    explanation: "CORRETO! A CIP (ou COSIP) é um tributo municipal arrecadado pela concessionária e repassado à Prefeitura para pagar a energia e a manutenção dos postes de iluminação pública da cidade."
+    explanation: "CORRETO! A CIP/COSIP é uma contribuição municipal destinada a custear o consumo de eletricidade e a manutenção das lâmpadas e postes das ruas, avenidas e praças."
   },
   {
     id: 19,
+    level: "Fácil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Qual é a função do medidor de energia elétrica (popular 'relógio de luz') instalado na entrada dos imóveis?",
+    question: "Qual é o papel do medidor de energia ('relógio de luz') instalado no padrão de entrada da casa?",
     options: [
-      "Controlar a velocidade com que a eletricidade entra nos fios.",
-      "Registrar cumulativamente o consumo total de eletricidade (em kWh) consumido pelo imóvel ao longo do tempo.",
-      "Desligar a energia automaticamente se os moradores ficarem mais de 8 horas dormindo.",
-      "Converter energia alternada em energia solar na entrada da casa."
+      "Regular a velocidade com que a corrente alternada flui no circuito para evitar danos nos eletrodomésticos.",
+      "Registrar o consumo acumulado de eletricidade em kWh.",
+      "Interromper o fornecimento caso detecte moradores ausentes durante períodos prolongados do dia.",
+      "Armazenar a eletricidade excedente da rede durante a noite para injetar na fiação interna durante a manhã."
     ],
     correct: 1,
-    explanation: "CORRETO! O medidor (seja eletromecânico de disco giratório ou eletrônico digital) registra a quantidade acumulada de quilowatts-hora consumidos por todos os aparelhos do imóvel."
+    explanation: "CORRETO! O medidor registra continuamente a passagem de energia consumida pela instalação residencial, marcando a contagem progressiva em kWh."
   },
   {
     id: 20,
+    level: "Médio",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Como o leiturista da distribuidora descobre a quantidade de energia que você consumiu no mês?",
+    question: "Como o leiturista da concessionária apura o consumo em kWh a ser faturado no mês?",
     options: [
-      "Ele calcula uma média baseada no tamanho do quintal da casa.",
-      "Ele subtrai o valor da leitura do mês anterior da leitura atual registrada no medidor.",
-      "Ele divide a leitura do medidor pelo número de postes na rua.",
-      "Ele mede a temperatura dos cabos que entram na residência."
+      "Estima o volume proporcional considerando a área construída do imóvel e a quantidade de cômodos declarados.",
+      "Subtrai a leitura anterior da leitura atual do medidor.",
+      "Divide a leitura atual do medidor pelo total de lâmpadas existentes nas vias públicas adjacentes ao imóvel.",
+      "Aplica uma média estatística fixa que não leva em consideração os dígitos numéricos exibidos no mostrador."
     ],
     correct: 1,
-    explanation: "CORRETO! Como o medidor acumula continuamente: Consumo do Mês = Leitura Atual − Leitura Anterior. Por exemplo, se no mês passado marcava 5.200 e agora marca 5.450, o consumo foi de 250 kWh."
+    explanation: "CORRETO! Como o medidor acumula valores: Consumo do mês = Leitura Atual − Leitura Anterior. A diferença direta aponta a quantidade exata de kWh consumidos."
   },
   {
     id: 21,
+    level: "Difícil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Se uma residência consumiu 200 kWh no mês e o custo total do kWh for R$ 0,85 (com impostos), qual será o valor do consumo?",
+    question: "Se uma casa consumiu 200 kWh no mês com tarifa de R$ 0,80 por kWh (com tributos), qual o valor do consumo?",
     options: [
-      "R$ 85,00",
-      "R$ 170,00",
-      "R$ 200,85",
-      "R$ 340,00"
+      "O montante faturado equivalerá a oitenta reais sem os acréscimos das contribuições associadas da prefeitura.",
+      "O valor do consumo será de R$ 160,00.",
+      "A fatura registrará oitenta e cinco reais decorrentes da multiplicação direta dos parâmetros fornecidos.",
+      "O cálculo final resultará em duzentos e oitenta reais em virtude da incidência tarifária mínima homologada."
     ],
     correct: 1,
-    explanation: "CORRETO! Cálculo simples: 200 kWh × R$ 0,85/kWh = R$ 170,00 de consumo básico de eletricidade na fatura."
+    explanation: "CORRETO! 200 kWh × R$ 0,80/kWh = R$ 160,00. É o cálculo básico de consumo da fatura de luz!"
   },
   {
     id: 22,
+    level: "Fácil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "Para que serve o gráfico de 'Histórico de Consumo' que vem impresso na maioria das faturas?",
+    question: "Para que serve a seção de 'Histórico de Consumo' presente nas faturas de energia?",
     options: [
-      "Apenas para decorar a conta com barras coloridas.",
-      "Permite acompanhar a evolução do consumo nos últimos 12 meses, identificando meses com pico de desperdício.",
-      "Indica o volume de água que evaporou das hidrelétricas do país.",
-      "Mostra a quantidade de horas em que a residência ficou sem eletricidade."
+      "Apresentar uma compilação meramente ilustrativa sem relação com as medições precedentes registradas no imóvel.",
+      "Acompanhar o consumo dos últimos 12 meses e detectar gastos.",
+      "Informar o volume total de chuva registrado nos principais reservatórios hidroelétricos da bacia regional.",
+      "Listar nominalmente os aparelhos eletrônicos que apresentaram defeitos de isolamento nas medições quinzenais."
     ],
     correct: 1,
-    explanation: "CORRETO! O histórico de consumo mensal permite ao consumidor comparar sua rotina de gastos com os meses anteriores e as mesmas estações do ano passado, ajudando no papel de 'Auditor da Energia' da casa!"
+    explanation: "CORRETO! O gráfico de histórico dos últimos 12 meses permite comparar seu gasto com meses anteriores e monitorar se as metas do 'Auditor da Energia' estão gerando economia real."
   },
   {
     id: 23,
+    level: "Difícil",
     category: "Anatomia da Conta",
     badge: "Conta de Luz",
-    question: "O que representa a linha 'TUSD' frequentemente detalhada na fatura de luz?",
+    question: "O que representa o chamado 'Custo de Disponibilidade' presente na conta de luz de unidades consumidoras?",
     options: [
-      "Taxa Única de Serviços Diversos cobrada pelo governo.",
-      "Tarifa de Uso do Sistema de Distribuição (o custo para a eletricidade viajar pela fiação local até seu padrão).",
-      "Total de Usinas Solares Desligadas na semana.",
-      "Tributo Universal de Sustentabilidade Doméstica."
+      "Uma cobrança indenizatória referente à substituição periódica de transformadores de alta tensão em postes vizinhos.",
+      "Valor mínimo cobrado pela distribuidora ligada à rede.",
+      "Uma taxa aplicada para remunerar o atendimento presencial prestado nos postos da agência reguladora regional.",
+      "Encargo extraordinário incidindo exclusivamente em imóveis residenciais equipados com sistemas solares fotovoltaicos."
     ],
     correct: 1,
-    explanation: "CORRETO! A fatura moderna separa TE (Tarifa de Energia: o produto energia em si) e TUSD (Tarifa de Uso do Sistema de Distribuição: o custo de manutenção dos cabos, transformadores e subestações)."
+    explanation: "CORRETO! O custo de disponibilidade é a taxa mínima que remunera a distribuidora por manter a rede elétrica à disposição (geralmente equivalente a 30 kWh para monofásico, 50 kWh bifásico e 100 kWh trifásico)."
   },
 
   // ==========================================
-  // CATEGORIA 3: BANDEIRAS TARIFÁRIAS & GERAÇÃO
+  // BLOCO 3: BANDEIRAS TARIFÁRIAS & GERAÇÃO (10 Questões)
   // ==========================================
   {
     id: 24,
+    level: "Fácil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Segundo o cartaz da Turma 802, o que as Bandeiras Tarifárias indicam?",
+    question: "Segundo o cartaz educativo da Turma 802, o que as Bandeiras Tarifárias indicam aos consumidores?",
     options: [
-      "O nível de perigo de choques elétricos no bairro durante temporais.",
-      "O custo adicional da energia gerada de acordo com as condições de produção (Verde, Amarela ou Vermelha).",
-      "Qual equipe esportiva está liderando a competição de economia de energia.",
-      "A quantidade de lixo reciclável coletado pelos medidores de luz."
+      "O índice meteorológico indicando o risco de quedas de galhos sobre a rede aérea durante temporais de vento.",
+      "O custo adicional da geração conforme as condições de produção.",
+      "A classificação de sustentabilidade concedida às distribuidoras que utilizam medidores com visor de cristal líquido.",
+      "O total de água descarregada pelas comportas dos vertedouros para evitar inundações nas cidades ribeirinhas."
     ],
     correct: 1,
-    explanation: "FATO DO CARTAZ! As bandeiras tarifárias sinalizam mensalmente aos consumidores os custos reais da geração de energia elétrica no Sistema Interligado Nacional (SIN), repassando custos imediatos de usinas térmicas."
+    explanation: "FATO DO CARTAZ! As bandeiras tarifárias sinalizam aos consumidores os custos reais da geração de energia mês a mês (Verde, Amarela ou Vermelha)."
   },
   {
     id: 25,
+    level: "Fácil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "O que significa quando a ANEEL divulga que o mês terá Bandeira Verde?",
+    question: "O que significa quando a fatura de luz é emitida sob a Bandeira Verde?",
     options: [
-      "Que os reservatórios de hidrelétricas estão em bons níveis e não há acréscimo tarifário na conta.",
-      "Que a energia elétrica será 100% gratuita para todas as famílias do país.",
-      "Que só é permitido usar aparelhos que tenham cor verde na carcaça.",
-      "Que a distribuição de energia será cortada durante as noites para poupar água."
+      "Condições favoráveis de geração hidrelétrica, sem taxa extra.",
+      "Que o consumidor terá desconto integral de cem por cento sobre toda a energia consumida no mês vigente.",
+      "Que a distribuidora obriga os moradores a utilizarem apenas equipamentos elétricos com acabamento verde-escuro.",
+      "Indica que o fornecimento de eletricidade será racionado nas horas de pico matutino para poupar reservatórios."
     ],
     correct: 0,
-    explanation: "CORRETO! Na Bandeira Verde, as condições hidrológicas são favoráveis: as hidrelétricas geram energia limpa e barata sem necessidade de ligar termelétricas caras. O consumidor paga a tarifa normal, sem taxa extra."
+    explanation: "CORRETO! Na Bandeira Verde, os reservatórios hidrelétricos estão cheios e a geração de energia renovável opera em condições normais, sem cobrança de custos extras."
   },
   {
     id: 26,
+    level: "Fácil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Qual situação climática normalmente provoca o acionamento da Bandeira Vermelha?",
+    question: "O que sinaliza o acionamento da Bandeira Amarela na conta de luz?",
     options: [
-      "Excesso de chuvas que inundam as usinas eólicas no litoral.",
-      "Período de seca severa nos reservatórios hidrelétricos, obrigando o acionamento de termelétricas a combustíveis fósseis.",
-      "Queda repentina de neve nas regiões montanhosas brasileiras.",
-      "Ventos muito fortes que desligam os painéis solares residenciais."
+      "Perigo iminente de colapso estrutural nas torres de sustentação das linhas de transmissão interestaduais.",
+      "Condições de geração menos favoráveis com pequeno acréscimo.",
+      "Obrigatoriedade legal de substituição de todos os disjuntores da residência no prazo de até trinta dias corridos.",
+      "Isenção de tributos estaduais sobre contas residenciais cujo consumo acumulado permaneça abaixo de cinquenta quilowatts."
     ],
     correct: 1,
-    explanation: "CORRETO! Com a falta de chuvas, os níveis dos reservatórios caem. Para evitar apagões e garantir o abastecimento, o Operador Nacional do Sistema (ONS) ativa as usinas termelétricas, que queimam gás, óleo ou carvão a custos muito mais altos."
+    explanation: "CORRETO! A Bandeira Amarela indica que as condições de geração estão menos favoráveis, exigindo o início da ativação de termelétricas complementares, gerando um pequeno acréscimo tarifário."
   },
   {
     id: 27,
+    level: "Médio",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Como o valor da Bandeira Tarifária (Amarela ou Vermelha) é cobrado na fatura do consumidor?",
+    question: "Qual motivo principal leva a ANEEL a acionar a Bandeira Vermelha no país?",
     options: [
-      "Como uma multa de trânsito em boleto separado.",
-      "Como um valor proporcional a cada 100 kWh consumidos no mês.",
-      "Como uma cobrança fixa igual para quem gasta 10 kWh ou 1.000 kWh.",
-      "Somente se a pessoa pagar a conta em atraso após o vencimento."
+      "Excesso repentino de chuvas torrenciais que transbordam as barragens de contenção hidroelétrica nas bacias do sul.",
+      "Seca nos reservatórios e acionamento de termelétricas mais caras.",
+      "Redução no valor do barril de petróleo importado que desestimula investimentos em energias renováveis e limpas.",
+      "Aumento indiscriminado nas exportações de energia elétrica excedente para os países vizinhos do Mercosul."
     ],
     correct: 1,
-    explanation: "CORRETO! As bandeiras tarifárias incidem proporcionalmente ao consumo: um valor em reais adicionado a cada 100 kWh consumidos. Portanto, quem gasta mais energia na bandeira vermelha paga um acréscimo muito maior!"
+    explanation: "CORRETO! A escassez de chuva esvazia os reservatórios hidrelétricos. Para evitar apagões, o ONS aciona termelétricas fósseis (gás, carvão e óleo), cuja geração custa muito mais caro."
   },
   {
     id: 28,
+    level: "Fácil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Qual é a principal fonte de geração de eletricidade da matriz elétrica brasileira?",
+    question: "Qual fonte energética responde pela maior parte da eletricidade produzida no Brasil?",
     options: [
-      "Usinas termonucleares a urânio enriquecido.",
-      "Usinas hidrelétricas (energia hidráulica dos rios).",
-      "Geradores a queima de lenha e carvão vegetal.",
-      "Usinas geotérmicas de calor vulcânico."
+      "Reatores termonucleares utilizando varetas de urânio enriquecido importadas.",
+      "Usinas hidrelétricas instaladas no leito dos rios.",
+      "Centrais eólicas marinhas implantadas nas plataformas litorâneas profundas.",
+      "Plantas termoelétricas movidas à combustão de biomassa de cana-de-açúcar e carvão."
     ],
     correct: 1,
-    explanation: "CORRETO! Cerca de 60% da eletricidade do Brasil provém de usinas hidrelétricas. Por isso o regime de chuvas tem impacto direto no preço da conta de luz de todos nós!"
+    explanation: "CORRETO! As usinas hidrelétricas são responsáveis por cerca de 60% da matriz elétrica nacional. Por isso, secas severas afetam diretamente o valor da conta de luz."
   },
   {
     id: 29,
+    level: "Difícil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "O que diferencia a Bandeira Vermelha Patamar 1 da Bandeira Vermelha Patamar 2?",
+    question: "Qual é a diferença entre a Bandeira Vermelha Patamar 1 e o Patamar 2?",
     options: [
-      "O Patamar 1 é para casas e o Patamar 2 é apenas para shopping centers.",
-      "O Patamar 2 representa um custo de geração térmica ainda mais elevado, gerando um acréscimo maior por kWh que o Patamar 1.",
-      "No Patamar 2 a voltagem da tomada cai para 50 volts.",
-      "Não há diferença, são apenas nomes alternativos para a mesma cor."
+      "O Patamar 1 é restrito a estabelecimentos comerciais e o Patamar 2 abrange consumidores rurais e industriais.",
+      "O Patamar 2 cobra taxa extra maior por acionar termelétricas caras.",
+      "No Patamar 2 as distribuidoras reduzem a frequência da rede alternada para economizar o giro dos transformadores.",
+      "Não existe diferenciação financeira entre os patamares, tratando-se apenas de subdivisão contábil de controle interno."
     ],
     correct: 1,
-    explanation: "CORRETO! A Bandeira Vermelha é dividida em Patamares 1 e 2. O Patamar 2 é ativado quando as condições térmicas são críticas e usinas mais custosas entram em operação, gerando uma taxa extra maior por cada 100 kWh."
+    explanation: "CORRETO! O Patamar 2 sinaliza condições operacionais ainda mais críticas: termelétricas de combustível fóssil mais caras entram em cena, gerando um acréscimo mais alto a cada 100 kWh."
   },
   {
     id: 30,
+    level: "Médio",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Qual órgão governamental federal é responsável por regular o setor elétrico e definir as bandeiras tarifárias?",
+    question: "Qual autarquia federal regulamenta o setor elétrico brasileiro e estabelece os valores das bandeiras tarifárias?",
     options: [
-      "ANVISA",
-      "ANEEL (Agência Nacional de Energia Elétrica)",
-      "INMETRO",
-      "DETRAN"
+      "Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO).",
+      "ANEEL (Agência Nacional de Energia Elétrica).",
+      "Agência Nacional de Vigilância Sanitária ligada ao Ministério da Saúde.",
+      "Companhia Nacional de Abastecimento vinculada ao Ministério do Desenvolvimento."
     ],
     correct: 1,
-    explanation: "CORRETO! A ANEEL (Agência Nacional de Energia Elétrica) é a autarquia federal vinculada ao Ministério de Minas e Energia que regula e fiscaliza a geração, transmissão e comercialização de energia elétrica no Brasil."
+    explanation: "CORRETO! A ANEEL (Agência Nacional de Energia Elétrica) é o órgão regulador federal que define as tarifas, fiscaliza as distribuidoras e divulga as bandeiras tarifárias mensais."
   },
   {
     id: 31,
+    level: "Fácil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Ao ser anunciada a Bandeira Vermelha no início do mês, qual a melhor atitude do 'Auditor da Energia'?",
+    question: "Ao ser anunciada a Bandeira Vermelha, qual atitude o 'Auditor da Energia' deve priorizar em casa?",
     options: [
-      "Ignorar o anúncio e continuar gastando energia como de costume.",
-      "Reforçar os hábitos conscientes da família para reduzir o consumo de kWh e amortecer o aumento da conta.",
-      "Desligar o relógio de luz geral durante a noite inteira arriscando estragar alimentos da geladeira.",
-      "Comprar geradores a gasolina para abastecer as tomadas da sala."
+      "Desconectar o quadro geral de disjuntores durante todas as noites para zerar a fatura, ignorando a refrigeração.",
+      "Reforçar hábitos econômicos para reduzir o consumo de kWh.",
+      "Ignorar o anúncio, considerando que as bandeiras tarifárias incidem unicamente sobre grandes indústrias de transformação.",
+      "Substituir imediatamente a fiação das paredes por condutores flexíveis de maior calibre sem avaliar hábitos de uso."
     ],
     correct: 1,
-    explanation: "CORRETO! O objetivo pedagógico das bandeiras é o sinal econômico: sabendo que a energia está mais cara, a população deve diminuir o tempo no chuveiro, desligar luzes ociosas e evitar o desperdício para proteger o orçamento familiar."
+    explanation: "CORRETO! As bandeiras dão um sinal econômico imediato: ao economizar kWh na bandeira vermelha, você reduz tanto o consumo base quanto o acréscimo proporcional da taxa extra."
   },
   {
     id: 32,
+    level: "Difícil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "Por que as usinas eólicas e solares no Brasil têm ajudado a aliviar o acionamento de bandeiras térmicas caras?",
+    question: "Como a geração de energia solar fotovoltaica e eólica auxilia a aliviar as bandeiras tarifárias no Brasil?",
     options: [
-      "Porque elas operam sem gastar combustíveis caros e complementam os reservatórios hidrelétricos no período seco.",
-      "Porque elas conseguem produzir chuva artificial sobre as hidrelétricas.",
-      "Porque painéis solares enviam eletricidade direto para as nuvens de tempestade.",
-      "Elas não ajudam em nada, pois energia limpa não funciona em redes de cidades."
+      "Gera energia renovável e evita acionar térmicas caras e poluentes.",
+      "Induz a condensação de vapor nas nuvens sobre os leitos das hidrelétricas por meio de ondas de alta frequência.",
+      "Aumenta a resistência dos cabos de transmissão, impedindo que a energia térmica chegue às residências.",
+      "As energias renováveis não produzem impacto econômico na modicidade tarifária dos consumidores residenciais."
     ],
     correct: 0,
-    explanation: "CORRETO! Fontes renováveis complementares como solar e eólica injetam energia limpa e barata no Sistema Interligado Nacional, poupando água nos reservatórios e diminuindo a necessidade de termelétricas fósseis poluentes e caras."
+    explanation: "CORRETO! A energia eólica e solar injeta eletricidade limpa e de baixo custo no sistema interligado, poupando água nos reservatórios e evitando ligar termelétricas fósseis caras."
   },
   {
     id: 33,
+    level: "Difícil",
     category: "Bandeiras Tarifárias",
     badge: "Bandeiras Tarifárias",
-    question: "O que foi a 'Bandeira Escassez Hídrica' criada em 2021 pela Câmara de Regras Excepcionais?",
+    question: "O que caracterizou a criação da 'Bandeira de Escassez Hídrica' em 2021 pela Câmara de Regras Excepcionais?",
     options: [
-      "Uma bandeira temporária de valor superior à vermelha patamar 2 devido à pior seca nos reservatórios em 91 anos.",
-      "Uma taxa aplicada para quem toma mais de 3 banhos no mesmo dia.",
-      "Um prêmio em dinheiro entregue aos maiores consumidores de energia do país.",
-      "Uma bandeira que exigia que todas as lâmpadas fossem trocadas por velas."
+      "Um prêmio em dinheiro entregue pelo Ministério de Minas e Energia aos maiores poupadores residenciais cadastrados.",
+      "Tarifa emergencial superior à vermelha na pior seca em 91 anos.",
+      "Proibição do uso de chuveiros elétricos e aparelhos de ar-condicionado durante os meses de estiagem outonal.",
+      "Cobrança destinada exclusivamente a financiar perfurações de poços artesianos nas dependências das concessionárias."
     ],
-    correct: 0,
-    explanation: "CORRETO! A Bandeira de Escassez Hídrica foi uma tarifa excepcional criada durante a grave crise hídrica de 2021 para cobrir os custos extraordinários de termelétricas emergenciais e importação de energia de países vizinhos."
+    correct: 1,
+    explanation: "CORRETO! Durante a crise hídrica severa de 2021, foi criada a Bandeira de Escassez Hídrica (tarifa emergencial com custo superior à vermelha 2) para custear térmicas emergenciais e importação de energia."
   },
 
   // ==========================================
-  // CATEGORIA 4: VILÕES E CAMPEÕES DO CONSUMO
+  // BLOCO 4: VILÕES E CAMPEÕES DO CONSUMO DOMÉSTICO (12 Questões)
   // ==========================================
   {
     id: 34,
+    level: "Fácil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Qual destes aparelhos domésticos costuma ser o campeão isolado de consumo de eletricidade na maioria dos lares brasileiros?",
+    question: "Em uma residência padrão brasileira, qual destes aparelhos geralmente lidera o consumo elétrico mensal?",
     options: [
-      "Roteador Wi-Fi",
-      "Chuveiro elétrico",
-      "Carregador de celular",
-      "Televisão de LED"
+      "Roteador de internet Wi-Fi de banda dupla mantido conectado ininterruptamente.",
+      "O chuveiro elétrico na hora do banho.",
+      "O televisor de tela plana LED instalado na sala com uso médio diário de quatro horas.",
+      "O carregador inteligente de bateria automotiva de baixa potência acionado ocasionalmente."
     ],
     correct: 1,
-    explanation: "CORRETO! O chuveiro elétrico pode responder por 25% a 35% de toda a conta de luz de uma família! Sua potência comum vai de 5.500W a 7.500W, operando como um verdadeiro monstro elétrico."
+    explanation: "CORRETO! O chuveiro elétrico pode representar de 25% a 35% de toda a conta de luz de uma família! Sua potência comum vai de 5.500W a 7.500W."
   },
   {
     id: 35,
+    level: "Difícil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Por que o chuveiro elétrico tem uma potência tão alta em comparação com uma televisão ou ventilador?",
+    question: "Por que a potência do chuveiro elétrico é muito maior que a de televisores e geladeiras?",
     options: [
-      "Porque ele precisa aquecer um fluxo contínuo de água fria em frações de segundo pelo Efeito Joule.",
-      "Porque o motor do chuveiro gira hélices de alta velocidade para bombear a água.",
-      "Porque chuveiros têm baterias químicas internas pesadas.",
-      "Porque ele precisa iluminar o interior do banheiro enquanto a água cai."
+      "Porque o motor do chuveiro aciona compressores pesados de pistão para elevar a pressão nos canos de saída.",
+      "Precisa esquentar um fluxo contínuo de água gelada em segundos.",
+      "Porque os chuveiros elétricos possuem acumuladores de íons de lítio que necessitam de recargas contínuas.",
+      "Devido à perda magnética provocada pelo atrito da água pressurizada ao cruzar os orifícios do espalhador."
     ],
-    correct: 0,
-    explanation: "CORRETO! A água possui calor específico elevado. Para aquecer litros de água gelada que passam rapidamente pelos dutos em segundos, é necessária uma dissipação brutal de calor térmico instantâneo via Efeito Joule."
+    correct: 1,
+    explanation: "CORRETO! A água tem calor específico elevado. Para aquecer litros de água gelada que passam rapidamente pelos dutos em segundos, é necessária uma dissipação enorme de calor (efeito Joule)."
   },
   {
     id: 36,
+    level: "Fácil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Reduzir o tempo de banho de 15 minutos para 5 minutos por pessoa em uma família de 4 integrantes resulta em:",
+    question: "Reduzir o tempo no chuveiro elétrico de 15 minutos para 5 minutos por banho resulta em:",
     options: [
-      "Apenas centavos de diferença no fim do ano.",
-      "Uma redução de até dois terços (cerca de 67%) na energia consumida pelo chuveiro da casa.",
-      "Um aumento do consumo, pois o chuveiro precisa ser ligado mais vezes.",
-      "Nenhuma alteração, pois a cobrança do chuveiro é feita em taxa fixa mensal."
+      "Variação imperceptível que não compensa a mudança na rotina dos moradores da casa.",
+      "Economia de cerca de dois terços no gasto com chuveiro.",
+      "Aumento na fatura, uma vez que chuveiros consomem mais energia na etapa de chaveamento inicial da água.",
+      "Nenhuma mudança financeira, já que o faturamento de chuveiros é cobrado em alíquota fixa desvinculada do tempo."
     ],
     correct: 1,
-    explanation: "CORRETO! O consumo elétrico é diretamente proporcional ao tempo: banhos 3 vezes mais curtos (5 minutos em vez de 15) reduzem o gasto do chuveiro a um terço do original, gerando uma enorme economia financeira e de água!"
+    explanation: "CORRETO! A energia gasta é proporcional ao tempo: um banho de 5 minutos consome exatamente um terço do que consumiria em 15 minutos, poupando energia elétrica e água potável!"
   },
   {
     id: 37,
+    level: "Fácil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Como o 'Auditor da Energia' pode testar se a borracha de vedação da porta da geladeira está vedando corretamente?",
+    question: "Como o 'Auditor da Energia' pode testar se a borracha da porta da geladeira está vedando corretamente?",
     options: [
-      "Esquentar a borracha com um fósforo para ver se derrete.",
-      "Colocar uma folha de papel entre a borracha e o batente: fechar a porta e tentar puxar; se sair fácil, a borracha precisa ser trocada.",
-      "Mergulhar a geladeira em água para verificar se surgem bolhas de ar.",
-      "Verificar se a borracha atrai ímãs colocados a 2 metros de distância."
+      "Utilizar um termômetro culinário encostado na parte externa da borracha durante o ciclo de degelo automático.",
+      "Puxar uma folha presa na porta: se sair fácil, há folga.",
+      "Mergulhar o refrigerador desligado em uma cuba d'água para verificar o desprendimento de bolhas de ar.",
+      "Aplicar um ímã pesado na carcaça plástica para medir a força de atração eletrostática residual da borracha."
     ],
     correct: 1,
-    explanation: "CORRETO! O teste da folha de papel é clássico e eficaz! Se a folha de papel deslizar sem resistência ao ser puxada com a porta fechada, a borracha perdeu a vedação magnética, deixando o ar frio escapar continuamente."
+    explanation: "CORRETO! O teste da folha de papel é infalível: coloque uma folha na porta fechada; se ela deslizar sem resistência ao ser puxada, a vedação está gasta, deixando o ar frio escapar continuamente."
   },
   {
     id: 38,
+    level: "Difícil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Qual é a principal vantagem energética de um aparelho de ar-condicionado com tecnologia 'Inverter'?",
+    question: "Qual a grande vantagem de economia de energia de um ar-condicionado com compressor 'Inverter'?",
     options: [
-      "Ele funciona sem ser ligado à tomada de eletricidade.",
-      "O compressor modula sua velocidade continuamente em vez de ficar ligando e desligando no pico máximo de corrente.",
-      "Ele transforma ar frio em energia elétrica que é devolvida para a rede pública.",
-      "Ele gasta mais energia para gelar o dobro no mesmo tempo."
+      "O equipamento gera sua própria energia elétrica a partir do fluxo aerodinâmico da ventilação forçada interna.",
+      "O compressor modula a rotação sem picos repetidos de liga/desliga.",
+      "Utiliza gás refrigerante ativado por reações endotérmicas que não demandam consumo de corrente alternada.",
+      "Elimina a necessidade de condensadora externa, dispensando qualquer alimentação conectada ao quadro elétrico."
     ],
     correct: 1,
-    explanation: "CORRETO! Em aparelhos convencionais, o compressor liga em pico máximo de potência e desliga repetidas vezes. O sistema Inverter ajusta a rotação do motor suavemente, mantendo a temperatura estável e economizando até 40% a 60% de energia!"
+    explanation: "CORRETO! Ao contrário dos aparelhos tradicionais que ligam e desligam no pico máximo, a tecnologia Inverter ajusta a rotação suavemente, economizando de 40% a 60% de energia."
   },
   {
     id: 39,
+    level: "Fácil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Qual é a faixa de temperatura recomendada no ar-condicionado para garantir conforto térmico sem explodir a conta de luz?",
+    question: "Qual faixa de temperatura no ar-condicionado equilibra conforto térmico e consumo consciente de energia?",
     options: [
-      "16°C a 17°C",
-      "23°C a 24°C",
-      "29°C a 30°C",
-      "10°C a 12°C"
+      "Dezoito graus Celsius para garantir resfriamento rápido dos móveis e paredes do ambiente ocupado.",
+      "Entre 23°C e 24°C, conforme indicado por técnicos e pela ANEEL.",
+      "Dezesseis graus Celsius durante todo o tempo de funcionamento contínuo do compressor residencial.",
+      "Trinta graus Celsius, pois climatizadores consomem a mesma eletricidade independente da regulagem do termostato."
     ],
     correct: 1,
-    explanation: "CORRETO! Manter o ar-condicionado entre 23°C e 24°C é a recomendação técnica da ANEEL e órgãos de saúde. Cada grau a menos (como colocar em 18°C) pode aumentar o consumo de eletricidade em até 7% a 10%!"
+    explanation: "CORRETO! A faixa de 23°C a 24°C é a recomendada pela ANEEL e Anvisa. Cada grau mais frio (como baixar para 18°C) eleva o consumo de energia em até 7% a 10%!"
   },
   {
     id: 40,
+    level: "Médio",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Por que filtros de ar-condicionado sujos aumentam o consumo de energia elétrica?",
+    question: "Por que os filtros de ar-condicionado sujos aumentam o consumo de energia elétrica?",
     options: [
-      "A poeira consome a eletricidade dos fios por atrito estático.",
-      "A poeira bloqueia a passagem do ar, forçando o motor e ventilador a trabalharem muito mais tempo sob esforço.",
-      "Filtros sujos invertem a voltagem da tomada de 127V para 220V.",
-      "Eles não aumentam o consumo, apenas mudam o cheiro do ambiente."
+      "A poeira acumulada absorve os elétrons que circulam na bobina do ventilador por condução estática.",
+      "A sujeira obstrui o fluxo de ar e força o motor a trabalhar mais.",
+      "A sujeira altera a frequência da corrente alternada de sessenta Hertz para trinta Hertz na condensadora.",
+      "Eles não impactam no consumo elétrico, alterando somente a retenção de umidade relativa no ambiente interno."
     ],
     correct: 1,
-    explanation: "CORRETO! A sujeira acumulada impede a circulação normal do fluxo de ar pela serpentina. O aparelho demora muito mais tempo para atingir a temperatura desejada no ambiente, mantendo o compressor sobrecarregado."
+    explanation: "CORRETO! Filtros cheios de pó obstruem a passagem do ar. O aparelho demora muito mais tempo para refrigerar o cômodo, forçando o compressor a trabalhar sob sobrecarga contínua."
   },
   {
     id: 41,
+    level: "Fácil",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Qual é a recomendação para o uso eficiente da máquina de lavar roupas?",
+    question: "Qual a melhor prática para usar a máquina de lavar roupas com eficiência energética e hídrica?",
     options: [
-      "Lavar uma camiseta por vez em ciclos completos de 2 horas.",
-      "Acumular a quantidade de roupas recomendada pelo fabricante e lavar a capacidade máxima de uma só vez.",
-      "Usar sempre o nível alto de água mesmo para uma única meia.",
-      "Deixar a máquina ligada no ciclo de centrifugação a noite inteira."
+      "Lavar duas ou três peças por ciclo diário para não sobrecarregar as correias de transmissão do cesto.",
+      "Acumular roupas e usar a capacidade máxima indicada no manual.",
+      "Selecionar permanentemente o nível máximo de água mesmo ao lavar uma única camisa esportiva leve.",
+      "Deixar o ciclo de molho ativado por três dias seguidos antes de ligar a etapa de lavagem mecânica."
     ],
     correct: 1,
-    explanation: "CORRETO! A máquina de lavar gasta energia motora e água a cada ciclo completo. Juntar roupas e lavar lotes cheios aproveita o ciclo ao máximo, economizando energia elétrica, água e sabão."
+    explanation: "CORRETO! A máquina gasta energia e água a cada ciclo completo. Juntar roupas e lavar a carga máxima indicada pelo fabricante otimiza cada kWh gasto e poupa água."
   },
   {
     id: 42,
+    level: "Médio",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Ao passar roupas, qual técnica inteligente ajuda a aproveitar o calor residual do ferro elétrico?",
+    question: "Ao passar roupas com o ferro elétrico, como aproveitar o calor residual de forma inteligente?",
     options: [
-      "Mergulhar o ferro quente na água fria para gerar vapor.",
-      "Desligar o ferro alguns minutos antes do fim e passar peças leves (como seda ou tecidos finos) apenas com o calor acumulado na base.",
-      "Passar as roupas sobre o colchão para esquentar a cama.",
-      "Deixar o ferro ligado na temperatura máxima por 1 hora antes de começar."
+      "Mergulhar a ponta do ferro aquecido em recipientes plásticos com água fria para reter calor em vapor quente.",
+      "Desligar antes do fim e passar peças leves com a base quente.",
+      "Manter o ferro conectado na tomada na graduação máxima de calor enquanto dobra as peças já passadas na mesa.",
+      "Posicionar a base metálica quente encostada na fiação de alimentação para elevar a temperatura dos condutores."
     ],
     correct: 1,
-    explanation: "CORRETO! A base metálica do ferro retém calor por vários minutos após ser desligada da tomada. Esse calor residual é perfeito para desamassar tecidos delicados que não exigem temperaturas extremas."
+    explanation: "CORRETO! Desligar o ferro 5 a 10 minutos antes de terminar permite desamassar tecidos delicados (como seda e sintéticos) usando apenas o calor acumulado na base metálica."
   },
   {
     id: 43,
+    level: "Médio",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Em dias quentes de verão, onde NUNCA se deve instalar a geladeira na cozinha para evitar desperdício de energia?",
+    question: "Onde NÃO se deve posicionar a geladeira na cozinha para evitar desperdício de energia elétrica?",
     options: [
-      "Próxima a fogões, fornos ou em locais onde ela receba incidência direta da luz do sol.",
-      "Sobre pisos de cerâmica ou porcelanato liso.",
-      "Em cozinhas que possuem janelas abertas.",
-      "A menos de 5 metros de uma lâmpada de LED."
+      "Em cômodos equipados com piso frio ou porcelanato polido que facilitam o escoamento de calor das sapatas.",
+      "Ao lado do fogão, forno ou sob a luz direta do sol.",
+      "Em áreas que contem com janelas voltadas para o poente com ventilação natural constante durante a tarde.",
+      "A uma distância de três metros de qualquer ponto de tomada monofásica com aterramento funcional."
     ],
-    correct: 0,
-    explanation: "CORRETO! Instalar a geladeira ao lado do forno ou sob o sol direto aquece o corpo externo do equipamento. As paredes perdem isolamento térmico mais rápido e o motor trabalhará quase sem pausas para manter o frio interno."
+    correct: 1,
+    explanation: "CORRETO! Colocar o refrigerador perto do fogão ou exposto ao sol direto aquece sua carcaça externa. O isolamento perde eficiência e o compressor opera por horas extras desnecessárias."
   },
   {
     id: 44,
+    level: "Médio",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Guardar alimentos ou panelas ainda fervendo diretamente dentro da geladeira acarreta:",
+    question: "Colocar panelas ou recipientes com comida fervendo direto dentro da geladeira provoca:",
     options: [
-      "Aumento imediato da temperatura interna, forçando o compressor a gastar muita energia e gerando excesso de gelo.",
-      "Nenhum efeito, pois a geladeira tem capacidade de congelamento infinito.",
-      "Uma economia de energia, porque o vapor quente limpa os dutos de ar.",
-      "A quebra imediata do cabo de alimentação da tomada."
+      "Aumento imediato na eficiência do sistema por descongelar os canos de expansão do evaporador traseiro.",
+      "Superaquecimento do ar interno e esforço extra do compressor.",
+      "Diminuição na fatura mensal decorrente da dissipação instantânea do calor residual nos compartimentos inferiores.",
+      "Queima automática do fusível de segurança da tomada sem influenciar no consumo de quilowatts-hora faturados."
     ],
-    correct: 0,
-    explanation: "CORRETO! O calor intenso do alimento quente eleva a temperatura de todo o ar interno da geladeira e de outros alimentos próximos. O motor ligará em potência máxima para tentar baixar a temperatura, consumindo muito mais kWh."
+    correct: 1,
+    explanation: "CORRETO! O calor intenso do alimento eleva a temperatura de todo o compartimento da geladeira, forçando o motor a trabalhar na potência máxima para restabelecer o frio interno."
   },
   {
     id: 45,
+    level: "Médio",
     category: "Eletrodomésticos",
     badge: "Vilões do Consumo",
-    question: "Para esquentar um prato individual de comida, o que geralmente consome MENOS energia elétrica e tempo?",
+    question: "Para aquecer uma porção individual de comida, qual equipamento costuma ser mais rápido e econômico?",
     options: [
-      "Um forno elétrico convencional grande de 2.500W pré-aquecido por 15 minutos.",
+      "Um forno elétrico de alta potência de 2.500 Watts pré-aquecido durante quinze minutos ininterruptos.",
       "O forno micro-ondas por 2 a 3 minutos.",
-      "Ambos consomem exatamente a mesma energia em qualquer circunstância.",
-      "Ligar o chuveiro elétrico e colocar o prato sob o vapor quente."
+      "Ambos consomem exatamente a mesma energia elétrica em qualquer circunstância operacional de aquecimento.",
+      "Ligar o chuveiro elétrico no modo inverno e apoiar o prato sobre o espalhador de água aquecida."
     ],
     correct: 1,
-    explanation: "CORRETO! O micro-ondas atua diretamente nas moléculas de água do alimento, aquecendo de dentro para fora em 2 a 3 minutos. O forno elétrico convencional precisa esquentar todo o ar interno e as paredes de metal, gastando muito mais energia."
+    explanation: "CORRETO! O micro-ondas aquece diretamente as moléculas de água do alimento em apenas 2 a 3 minutos, enquanto o forno elétrico precisa aquecer todo o ar e as paredes de metal por muito mais tempo."
   },
 
   // ==========================================
-  // CATEGORIA 5: ILUMINAÇÃO E EFICIÊNCIA
+  // BLOCO 5: ILUMINAÇÃO E EFICIÊNCIA ENERGÉTICA (8 Questões)
   // ==========================================
   {
     id: 46,
+    level: "Médio",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "Por que a substituição de lâmpadas incandescentes antigas por lâmpadas de LED se tornou uma revolução de economia?",
+    question: "Por que as lâmpadas de tecnologia LED substituíram as antigas lâmpadas incandescentes?",
     options: [
-      "Porque as lâmpadas de LED duram até 25 vezes mais e consomem até 80% a 85% menos eletricidade para produzir a mesma luz.",
-      "Porque as lâmpadas de LED funcionam com energia solar embutida e não gastam fios.",
-      "Porque as incandescentes eram radioativas e ilegais em qualquer lugar do mundo.",
-      "Porque o LED faz barulho de campainha quando alguém esquece aceso."
+      "Porque o vidro externo das lâmpadas de LED é blindado contra impactos mecânicos causados por quedas acidentais.",
+      "Economizam até 85% de energia e duram até 25 vezes mais.",
+      "Porque as incandescentes continham elementos radioativos proibidos pela vigilância sanitária nacional e internacional.",
+      "Porque as lâmpadas incandescentes geravam ruídos acústicos perceptíveis na frequência dos transformadores de bairro."
     ],
-    correct: 0,
-    explanation: "CORRETO! Uma lâmpada de LED de 9W a 10W ilumina o mesmo que uma antiga lâmpada incandescente de 60W a 75W, economizando mais de 80% de energia e durando até 25.000 horas!"
+    correct: 1,
+    explanation: "CORRETO! Lâmpadas LED geram a mesma luminosidade consumindo cerca de 80% a 85% menos energia que as incandescentes antigas, além de durarem até 25.000 horas."
   },
   {
     id: 47,
+    level: "Médio",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "Ao comprar uma lâmpada moderna, qual medida gravada na embalagem indica a QUANTIDADE REAL DE LUZ que ela produz?",
+    question: "Ao escolher uma lâmpada, qual grandeza impressa na embalagem indica a QUANTIDADE REAL DE LUZ que ela produz?",
     options: [
-      "Os Watts (W).",
-      "Os Lúmens (lm).",
-      "Os Volts (V).",
-      "Os Hertz (Hz)."
+      "Os Watts nominais que registram o consumo da corrente.",
+      "Os Lúmens (lm), que medem o fluxo de luz emitida.",
+      "A voltagem em Volts que aponta a diferença de potencial.",
+      "A frequência em Hertz dos ciclos alternados da rede."
     ],
     correct: 1,
-    explanation: "CORRETO! Lúmens (lm) medem o fluxo luminoso, ou seja, o brilho real da lâmpada percebido pelo olho humano. Watts (W) medem apenas o consumo elétrico. O ideal é buscar lâmpadas com mais lúmens e menos watts!"
+    explanation: "CORRETO! Lúmens (lm) medem o fluxo luminoso (a luz visível emitida). Watts (W) medem apenas a potência consumida. Uma lâmpada eficiente entrega mais lúmens consumindo menos watts."
   },
   {
     id: 48,
+    level: "Difícil",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "O que significa o conceito de 'Eficiência Luminosa' de uma lâmpada?",
+    question: "O que exprime o índice de 'Eficiência Luminosa' de uma lâmpada?",
     options: [
-      "A quantidade de lúmens entregue para cada Watt de potência elétrica consumido (lm/W).",
-      "O peso da embalagem de papelão da lâmpada dividido pelo preço.",
-      "A velocidade com que a lâmpada acende após pressionar o interruptor.",
-      "A cor do vidro da lâmpada sob a luz da lua."
+      "O peso da carcaça de alumínio dividido pela tensão nominal de fornecimento do soquete rosqueável E27.",
+      "A relação entre lúmens produzidos por watt consumido (lm/W).",
+      "O tempo em milissegundos que a lâmpada leva para atingir cem por cento do brilho máximo pós-acionamento.",
+      "A quantidade de horas que a lâmpada permanece acesa dividida pelo valor pago na compra do produto."
     ],
-    correct: 0,
-    explanation: "CORRETO! A eficiência luminosa é expressa em Lúmens por Watt (lm/W). Quanto maior esse número, mais luz a lâmpada gera consumindo o mínimo de energia elétrica da rede."
+    correct: 1,
+    explanation: "CORRETO! A eficiência luminosa é expressa em lm/W (lúmens por watt). Quanto mais luz a lâmpada produz com o menor consumo de watts, mais eficiente e econômica ela é!"
   },
   {
     id: 49,
+    level: "Médio",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "Por que pintar paredes e tetos de cômodos com cores claras ajuda na eficiência energética da casa?",
+    question: "Por que pintar paredes e forros com cores claras favorece a eficiência energética dos ambientes?",
     options: [
-      "Porque a tinta clara conduz eletricidade pelos rodapés.",
-      "Porque superfícies claras refletem melhor a luz solar e das lâmpadas, permitindo usar lâmpadas de menor potência e menos pontos acesos.",
-      "Porque tintas escuras esfriam demais os quartos exigindo aquecedores.",
-      "Não traz nenhum impacto prático na iluminação."
+      "Porque a tinta de tonalidade clara bloqueia a circulação de correntes parasitas nas vigas de concreto armado.",
+      "Superfícies claras refletem a luz e exigem menos lâmpadas acesas.",
+      "Porque tonalidades escuras atraem elétrons da atmosfera, sobrecarregando a fiação elétrica dos interruptores.",
+      "Paredes claras não têm influência na iluminação, atuando somente como isolante acústico entre cômodos residenciais."
     ],
     correct: 1,
-    explanation: "CORRETO! Paredes e forros brancos ou de tons claros possuem alto coeficiente de reflexão luminosa. A luz natural durante o dia e a luz artificial à noite se espalham com muito mais eficiência pelo cômodo."
+    explanation: "CORRETO! Paredes e tetos brancos ou claros possuem alto índice de reflexão luminosa, permitindo aproveitar melhor tanto a luz solar diurna quanto a luz das lâmpadas à noite."
   },
   {
     id: 50,
+    level: "Médio",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "Qual é a principal utilidade dos 'sensores de presença' na iluminação de garagens, escadarias e corredores de prédios?",
+    question: "Qual o benefício de instalar sensores de presença em corredores e garagens de condomínios?",
     options: [
-      "Evitar que as lâmpadas fiquem acesas continuamente em locais de passagem esporádica.",
-      "Aumentar a potência das lâmpadas em até 300%.",
-      "Transformar corrente contínua em corrente trifásica.",
-      "Contar o número de passos que cada morador dá no corredor."
+      "Aumentar a voltagem das lâmpadas para níveis industriais de quatrocentos e quarenta Volts trifásicos.",
+      "Acender as luzes apenas na passagem de pessoas, evitando desperdício.",
+      "Inverter o sentido de giro da corrente alternada para gerar créditos adicionais no relógio do medidor.",
+      "Registrar a identidade fotográfica dos moradores que circulam nas áreas sociais comuns do condomínio."
     ],
-    correct: 0,
-    explanation: "CORRETO! Em locais comuns onde as pessoas passam apenas por poucos segundos, os sensores de presença infravermelhos acendem a luz quando detectam movimento e apagam automaticamente após tempo pré-determinado, cortando horas de desperdício."
+    correct: 1,
+    explanation: "CORRETO! Os sensores infravermelhos acionam as lâmpadas somente quando detectam movimentação de pessoas, desligando-as após alguns segundos e eliminando luzes acesas ociosas."
   },
   {
     id: 51,
+    level: "Difícil",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "O que é 'Iluminação Natural Zenital' na arquitetura e como ela contribui para a economia de energia?",
+    question: "O que é 'Iluminação Natural Zenital' e como ela contribui para a economia na arquitetura sustentável?",
     options: [
-      "Lâmpadas especiais instaladas debaixo dos pisos das salas.",
-      "Aberturas zenitais, claraboias ou sheds no telhado que captam luz natural do sol durante todo o dia, dispensando lâmpadas artificiais.",
-      "Iluminação produzida por fungos bioluminescentes no jardim.",
-      "Uso de lanternas a pilha penduradas no teto dos quartos."
+      "Lâmpadas com baterias químicas alimentadas por ondas de rádio e instaladas em rodapés embutidos.",
+      "Aberturas e claraboias no teto que captam luz solar o dia todo.",
+      "Dispositivos que transformam a luminosidade lunar da noite em corrente contínua para alimentar refletores.",
+      "Luminárias que utilizam gases nobres inertes ativados por campos magnéticos induzidos no contrapiso."
     ],
     correct: 1,
-    explanation: "CORRETO! A iluminação zenital utiliza a luz solar que incide verticalmente pelo teto por meio de claraboias e tubos solares, iluminando galpões, salas e corredores naturalmente durante o horário diurno sem gastar 1 kWh."
+    explanation: "CORRETO! A iluminação zenital utiliza claraboias e aberturas no teto para captar a luz do sol verticalmente, iluminando galpões e salas naturalmente durante o dia com zero consumo de eletricidade."
   },
   {
     id: 52,
+    level: "Difícil",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "Lâmpadas tubulares fluorescentes antigas muito usadas em escolas e comércios podem ser substituídas vantajosamente por:",
+    question: "Lâmpadas tubulares fluorescentes antigas muito comuns em salas de aula podem ser substituídas por:",
     options: [
-      "Lâmpadas tubulares de LED (T8 LED), que dispensam reatores magnéticos que consumiam energia extra.",
-      "Lampiões a querosene pendurados nas janelas.",
-      "Lâmpadas incandescentes de 100W em série.",
-      "Espelhos reflexivos que giram com o vento."
+      "Lampiões portáteis de querosene equipados com mechas incandescentes de amianto reforçado.",
+      "Tubulares de LED (T8 LED), que não usam reatores e gastam a metade.",
+      "Lâmpadas de arco de carbono conectadas em circuitos série sem isolamento galvânico adicional.",
+      "Espelhos côncavos motorizados que redirecionam a luz de postes externos para dentro das janelas."
     ],
-    correct: 0,
-    explanation: "CORRETO! As lâmpadas tubulares de LED substituem diretamente as antigas fluorescentes de 40W por modelos de 18W a 20W, além de eliminarem o reator eletromagnético, que sozinho desperdiçava de 5W a 15W em calor contínuo!"
+    correct: 1,
+    explanation: "CORRETO! As tubulares LED T8 consomem menos da metade da energia das fluorescentes convencionais e dispensam o reator eletromagnético, que sozinho desperdiçava de 5W a 15W contínuos em calor."
   },
   {
     id: 53,
+    level: "Difícil",
     category: "Iluminação e Eficiência",
     badge: "Eficiência",
-    question: "O que a 'temperatura de cor' de uma lâmpada (medida em Kelvin, ex: 2700K vs 6500K) representa?",
+    question: "O que a 'temperatura de cor' de uma lâmpada (medida em Kelvin, como 2700K ou 6500K) representa?",
     options: [
-      "A temperatura física que a lâmpada atinge na mão quando esquenta.",
-      "A tonalidade da luz emitida: tons amarelados/quentes (~2700K) ou tons brancos-azulados/frios (~6500K).",
-      "A quantidade de calorias que a lâmpada queima por hora de uso.",
-      "O valor da tarifa que será cobrado da concessionária."
+      "A temperatura física em graus Celsius que a carcaça da lâmpada atinge na mão do usuário após uma hora acesa.",
+      "A tonalidade da luz emitida: amarelada quente ou branca fria.",
+      "O calor dissipado pela resistência elétrica interna quando submetida a sobretensões da rede pública.",
+      "O nível de radiação infravermelha concentrado que a lâmpada direciona sobre os móveis posicionados abaixo."
     ],
     correct: 1,
-    explanation: "CORRETO! A temperatura de cor não é o calor do bulbo! Ela indica a tonalidade visual: luz quente (amarela, relaxante, ~2.700K) recomendada para quartos e salas, e luz fria (branca/azulada, estimulante, ~6.500K) indicada para escritórios, cozinhas e escolas."
+    explanation: "CORRETO! Não se trata de calor do bulbo! A escala Kelvin aponta a aparência visual da luz: luz quente (~2700K, aconchegante para quartos) e luz fria (~6500K, estimulante para salas de aula e cozinhas)."
   },
 
   // ==========================================
-  // CATEGORIA 6: SELO PROCEL, SEGURANÇA E AUDITORIA
+  // BLOCO 6: SELO PROCEL, SEGURANÇA E AUDITORIA (7 Questões)
   // ==========================================
   {
     id: 54,
+    level: "Médio",
     category: "Selo Procel e Segurança",
     badge: "Selo Procel",
-    question: "O que significa o 'Selo Procel de Economia de Energia' presente em eletrodomésticos no Brasil?",
+    question: "O que indica o 'Selo Procel de Economia de Energia' afixado nos eletrodomésticos?",
     options: [
-      "Que o aparelho é importado de outro país com desconto alfandegário.",
-      "Que o produto foi testado em laboratório e apresenta os melhores níveis de eficiência energética dentro de sua categoria (nota 'A').",
-      "Que o aparelho só pode ser ligado aos finais de semana e feriados.",
-      "Que a fabricante do eletrodoméstico não paga impostos federais."
+      "Que o produto possui isenção alfandegária integral conferida pelo Ministério do Desenvolvimento e Comércio Exterior.",
+      "Que o equipamento é certificado como nota 'A' em eficiência.",
+      "Que o aparelho somente pode ser ligado em horários fora do pico comercial para evitar sobrecargas no sistema.",
+      "Garante que o fabricante arcará com o pagamento de cinquenta por cento da fatura residencial do primeiro ano de uso."
     ],
     correct: 1,
-    explanation: "CORRETO! Criado pelo Programa Nacional de Conservação de Energia Elétrica (Procel), o selo indica ao consumidor quais produtos consomem menos energia dentro de sua categoria, orientando compras inteligentes e econômicas."
+    explanation: "CORRETO! Criado pelo Programa Nacional de Conservação de Energia Elétrica (Procel), o selo atesta que o produto foi testado em laboratório e possui a melhor eficiência energética (nota 'A') de sua categoria."
   },
   {
     id: 55,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Selo Procel",
-    question: "O que a Etiqueta Nacional de Conservação de Energia (ENCE) do INMETRO exibe na frente dos eletrodomésticos?",
+    question: "O que a Etiqueta Nacional de Conservação de Energia (ENCE) do INMETRO informa aos consumidores?",
     options: [
-      "Uma escala colorida de classificação de 'A' (mais eficiente) até letras menores como 'E' ou 'F', além do consumo médio estimado em kWh/mês.",
-      "O número de telefone de todos os técnicos autorizados da cidade.",
-      "A lista com os nomes de todos os operários que montaram o produto.",
-      "A data limite em que o aparelho deve ser jogado no lixo."
+      "O manual descritivo detalhado contendo os diagramas esquemáticos dos circuitos eletrônicos internos do produto.",
+      "Escala colorida de eficiência (A a E) e consumo em kWh/mês.",
+      "A data limite após a qual os componentes elétricos devem ser compulsoriamente descartados em aterros credenciados.",
+      "O número de registro profissional dos engenheiros que supervisionaram a linha de montagem industrial do aparelho."
     ],
-    correct: 0,
-    explanation: "CORRETO! A etiqueta do INMETRO/Procel padroniza a informação com uma escala de letras e cores e informa o consumo mensal estimado em kWh sob condições padrão de uso, permitindo comparar modelos concorrentes antes de comprar."
+    correct: 1,
+    explanation: "CORRETO! A etiqueta do INMETRO padroniza as informações de eficiência de 'A' (mais eficiente) a 'E'/'F' e aponta o consumo médio estimado em kWh/mês, orientando escolhas conscientes."
   },
   {
     id: 56,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Segurança Elétrica",
-    question: "O que acontece em uma residência quando os fios elétricos instalados nas paredes são finos demais para a corrente que passa neles?",
+    question: "O que ocorre quando os fios elétricos instalados em uma residência são mais finos do que o recomendado?",
     options: [
-      "A energia viaja mais rápido porque o canal é mais estreito.",
-      "Os fios esquentam por sobrecarga (Efeito Joule), provocando desperdício invisível de energia na conta e alto risco de curto e incêndio.",
-      "A conta de luz fica mais barata porque cabe menos eletricidade no cano.",
-      "O relógio de luz gira para trás para compensar a resistência."
+      "A corrente elétrica adquire maior velocidade de propagação devido ao estreitamento mecânico do duto condutor.",
+      "Os fios esquentam por efeito Joule, gastando luz e arriscando curto.",
+      "A fatura de luz diminui porque a resistência mais alta dos cabos finos bloqueia a entrada de quilowatts-hora na casa.",
+      "O relógio do medidor desacelera automaticamente a rotação do disco para compensar a queda de tensão nas tomadas."
     ],
     correct: 1,
-    explanation: "CORRETO! Fios subdimensionados geram aquecimento por resistência elétrica elevada. Esse calor é energia elétrica da sua conta sendo jogada fora nas paredes, além de degradar o isolamento de PVC e causar incêndios graves!"
+    explanation: "CORRETO! Fios subdimensionados oferecem maior resistência à passagem da corrente, aquecendo as paredes (efeito Joule). Esse calor é energia elétrica desperdiçada na sua conta, além de risco sério de incêndio!"
   },
   {
     id: 57,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Segurança Elétrica",
-    question: "Qual é a função do 'fio condutor de proteção' (popularmente chamado de Fio Terra, cor verde ou verde-amarela)?",
+    question: "Qual a função do 'fio condutor de proteção' (fio terra, de cor verde ou verde-amarela)?",
     options: [
-      "Aumentar a voltagem das tomadas de 110V para 220V.",
-      "Desviar com segurança qualquer fuga acidental de corrente elétrica para o solo, evitando choques elétricos perigosos nos usuários.",
-      "Conectar o aparelho diretamente com o satélite de internet.",
-      "Eliminar a necessidade de disjuntores no quadro elétrico."
+      "Converter a tensão alternada de duzentos e vinte Volts para cento e vinte e sete Volts de forma instantânea.",
+      "Desviar correntes de fuga para o solo, evitando choques graves.",
+      "Permitir que os aparelhos domésticos permaneçam ligados mesmo durante manutenções preventivas da concessionária.",
+      "Acelerar o carregamento de baterias de telefones celulares através da captação de correntes estáticas do piso."
     ],
     correct: 1,
-    explanation: "CORRETO! Se um fio desencapado encostar na carcaça metálica de uma lavadora ou micro-ondas, o Fio Terra escoa a corrente para a haste enterrada no solo, desarmando o disjuntor e salvando vidas contra choques elétricos fatais."
+    explanation: "CORRETO! Se um fio desencapado encostar na carcaça de metal de uma geladeira ou micro-ondas, o fio terra conduz a corrente de fuga com segurança para a terra, desarmando o disjuntor e evitando choque fatal."
   },
   {
     id: 58,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Segurança Elétrica",
-    question: "Qual é o papel fundamental do disjuntor termomagnético dentro do quadro de distribuição da residência?",
+    question: "Qual é o papel fundamental do disjuntor termomagnético no quadro de distribuição da casa?",
     options: [
-      "Garantir que a energia nunca acabe durante tempestades.",
-      "Desarmar e interromper automaticamente a passagem de corrente elétrica caso ocorra uma sobrecarga perigosa ou um curto-circuito.",
-      "Medir a quantidade de quilowatts que cada morador individual gasta por dia.",
-      "Aumentar a potência dos chuveiros quando a água estiver muito fria."
+      "Estabilizar a frequência da rede em exatamente sessenta Hertz para não desregular os relógios digitais conectados.",
+      "Desarmar automaticamente sob sobrecarga ou curto-circuito.",
+      "Registrar a porcentagem de energia consumida individualmente por cada membro da família ao longo do mês.",
+      "Impedir que a distribuidora realize cortes no fornecimento em caso de faturas atrasadas ou pendências cadastrais."
     ],
     correct: 1,
-    explanation: "CORRETO! O disjuntor é o 'guardião' do circuito elétrico: quando a corrente ultrapassa o limite seguro do cabo, ele desarma mecanicamente por efeito térmico ou magnético, impedindo que a fiação queime."
+    explanation: "CORRETO! O disjuntor é o guardião dos condutores elétricos: caso a corrente exceda a capacidade do circuito (sobrecarga ou curto), ele desarma mecanicamente, cortando a corrente antes que a fiação queime."
   },
   {
     id: 59,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Auditoria Escolar",
-    question: "O que caracteriza uma 'Auditoria Energética Doméstica' realizada por estudantes como a Turma 802?",
+    question: "O que é uma 'Auditoria Energética Doméstica' realizada por estudantes como os da Turma 802?",
     options: [
-      "Comprar ferramentas de engenharia pesada para quebrar as paredes da casa.",
-      "Mapear todos os aparelhos da casa, calcular seus consumos, identificar hábitos de desperdício e propor um plano de ação para a família.",
-      "Desconectar a casa da fiação da rua e viver sem nenhuma luz.",
-      "Entregar multas em dinheiro para os pais quando esquecerem a lâmpada acesa."
+      "Comprar ferramentas industriais pesadas para abrir as tubulações e quebrar o reboco das alvenarias da casa.",
+      "Mapear aparelhos, calcular gastos e mudar hábitos da família.",
+      "Desconectar o imóvel do fornecimento público da distribuidora e adotar exclusivamente velas e lamparinas.",
+      "Emitir notificações de multas financeiras judiciais para os familiares que deixarem equipamentos em repouso."
     ],
     correct: 1,
-    explanation: "FATO DO PROJETO! Os 'Auditores da Energia' aprendem a calcular o consumo dos equipamentos, identificar mitos e verdades, interpretar a conta de luz e engajar a família em hábitos conscientes que geram economia real."
+    explanation: "CORRETO! Os estudantes da Turma 802 identificam mitos, analisam a fatura, calculam o consumo dos aparelhos e orientam a família com ações simples que geram economia real e sustentabilidade."
   },
   {
     id: 60,
+    level: "Difícil",
     category: "Selo Procel e Segurança",
     badge: "Auditoria Escolar",
-    question: "Por que pequenas atitudes cotidianas somadas (como desligar o stand-by de réguas, banhos de 5 min e lâmpadas de LED) fazem tanta diferença?",
+    question: "Por que pequenas atitudes cotidianas somadas (como banhos mais curtos e desligar o stand-by) geram grande impacto?",
     options: [
-      "Porque o consumo de energia elétrica é cumulativo: pequenos desperdícios multiplicados por 30 dias e por milhões de lares afetam a conta, o clima e o país inteiro.",
-      "Não fazem diferença nenhuma, apenas grandes indústrias devem se preocupar com energia.",
-      "Porque a concessionária desconta metade da conta de quem usa lâmpada apagada.",
-      "Porque o Sol para de brilhar se a sociedade desperdiçar energia demais."
+      "O consumo é cumulativo: poupar reduz despesas e protege os rios.",
+      "Pequenas atitudes individuais não produzem impacto prático no faturamento ou na matriz energética global do país.",
+      "Porque as distribuidoras estaduais concedem descontos de setenta por cento para residências que desligam réguas de tomadas.",
+      "Porque o sol e os ventos deixam de gerar energia renovável caso os consumidores residenciais não desliguem aparelhos."
     ],
     correct: 0,
-    explanation: "PARABÉNS AUDITOR! A energia elétrica gerada não é ilimitada. Quando cada família da Turma 802 elimina desperdícios, poupamos os rios, evitamos a queima de combustíveis fósseis poluentes, reduzimos as contas e preservamos o futuro do planeta!"
+    explanation: "PARABÉNS AUDITOR! O consumo de energia é contínuo e cumulativo. Cada kWh poupado por milhões de famílias protege os rios, reduz as contas e evita queimar combustíveis fósseis poluentes nas termelétricas!"
   }
 ];
 
-// Funções utilitárias para seleção de perguntas
+/**
+ * Função utilitária para seleção e ALTERNÂNCIA DE NÍVEIS
+ * Quando as questões são preparadas, elas alternam estritamente entre os níveis:
+ * Fácil -> Médio -> Difícil -> Fácil -> Médio -> Difícil...
+ */
 function getQuestionsByMode(mode, category = null) {
-  let list = [...QUIZ_QUESTIONS];
+  let pool = [...QUIZ_QUESTIONS];
 
+  // Filtro de categoria se solicitado
   if (category && category !== 'all') {
-    list = list.filter(q => q.category === category);
+    pool = pool.filter(q => q.category === category);
   }
 
-  // Embaralhar aleatoriamente
-  const shuffled = list.sort(() => Math.random() - 0.5);
-
-  if (mode === 'maratona50') {
-    return shuffled.slice(0, 50);
-  } else if (mode === 'completo60') {
-    return shuffled;
-  } else if (mode === 'rapido15') {
-    return shuffled.slice(0, 15);
-  } else if (mode === 'mitos') {
-    return shuffled.filter(q => q.category === 'Mitos e Verdades');
+  // Se for modo específico de mitos ou conta:
+  if (mode === 'mitos') {
+    pool = pool.filter(q => q.category === 'Mitos e Verdades');
   } else if (mode === 'conta') {
-    return shuffled.filter(q => q.category === 'Anatomia da Conta' || q.category === 'Bandeiras Tarifárias');
+    pool = pool.filter(q => q.category === 'Anatomia da Conta' || q.category === 'Bandeiras Tarifárias');
   }
 
-  return shuffled;
+  // Separar em baldes por dificuldade
+  const facil = pool.filter(q => q.level === 'Fácil').sort(() => Math.random() - 0.5);
+  const medio = pool.filter(q => q.level === 'Médio').sort(() => Math.random() - 0.5);
+  const dificil = pool.filter(q => q.level === 'Difícil').sort(() => Math.random() - 0.5);
+
+  // Intercalar ciclicamente: Fácil, Médio, Difícil, Fácil, Médio, Difícil...
+  const alternated = [];
+  const maxBucketLen = Math.max(facil.length, medio.length, dificil.length);
+
+  for (let i = 0; i < maxBucketLen; i++) {
+    if (i < facil.length) alternated.push(facil[i]);
+    if (i < medio.length) alternated.push(medio[i]);
+    if (i < dificil.length) alternated.push(dificil[i]);
+  }
+
+  // Selecionar tamanho conforme o modo
+  if (mode === 'maratona50') {
+    return alternated.slice(0, 50);
+  } else if (mode === 'completo60') {
+    return alternated.slice(0, 60);
+  } else if (mode === 'rapido15') {
+    return alternated.slice(0, 15);
+  }
+
+  return alternated;
 }
 
 // Export para escopo global no navegador e Node.js
